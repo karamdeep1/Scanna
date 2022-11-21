@@ -1,0 +1,36 @@
+/*
+.button {
+    -fx-background-color:  rgb(247, 13, 26);
+    -fx-background-radius: 0em;
+}
+
+.button:hover {
+    -fx-background-color: rgb(228, 34, 23);
+}
+
+.button:pressed {
+    -fx-background-color: #B21807;
+}
+
+.button:focused {
+    -fx-background-color: #be0f0f;
+    -fx-border-color: rgb(0,0,0);
+    -fx-border-width: 0px, 0px, 0px, 3px;
+}
+
+ */
+
+.button {
+    -fx-background-color: #00ffff;
+    //-fx-effect: dropshadow(three-pass-box, rgb(0,0,0,0.8), 10, 0, 0, 0);
+}
+.button:hover {
+    //-fx-background-color: #ff4843;
+    -fx-background-color: #7fffd4;
+}
+.button:pressed {
+    -fx-background-color: #008b8b
+}
+.button:focused {
+    -fx-border-width: 0px, 0px, 0px, 3px;
+}
