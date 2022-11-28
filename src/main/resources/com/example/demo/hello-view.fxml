@@ -14,41 +14,43 @@
    <children>
       <BorderPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="735.0" style="-fx-background-color: white;">
          <left>
-            <AnchorPane prefHeight="470.0" prefWidth="226.0" style="-fx-background-color: lightskyblue;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="457.0" prefWidth="391.0" style="-fx-background-color:linear-gradient( skyblue,white);" BorderPane.alignment="CENTER">
                <effect>
                   <Glow />
                </effect>
+               <children>
+                  <Label fx:id="wrongLogin" layoutX="22.0" layoutY="177.0" prefHeight="82.0" prefWidth="347.0" style="x: red;" textFill="#00b2f0">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
             </AnchorPane>
          </left>
          <center>
             <AnchorPane prefHeight="1394.0" prefWidth="521.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutY="851.0" prefHeight="484.0" prefWidth="510.0">
+                  <AnchorPane layoutY="851.0" prefHeight="484.0" prefWidth="516.0">
                      <children>
-                        <Label layoutX="50.0" layoutY="206.0" prefHeight="26.0" prefWidth="135.0" text="Username:" textFill="#00b2f0">
+                        <Label layoutX="113.0" layoutY="157.0" prefHeight="26.0" prefWidth="135.0" text="Username" textFill="#00b2f0">
                            <font>
-                              <Font name="System Bold Italic" size="25.0" />
+                              <Font name="Bodoni MT Bold" size="25.0" />
                            </font>
                         </Label>
-                        <Label layoutX="50.0" layoutY="284.0" prefHeight="26.0" prefWidth="135.0" text="Password:" textFill="#00b2f0">
+                        <Label layoutX="114.0" layoutY="242.0" prefHeight="26.0" prefWidth="135.0" text="Password" textFill="#00b2f0">
                            <font>
-                              <Font name="System Bold Italic" size="25.0" />
+                              <Font name="Bodoni MT Bold" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="username" layoutX="186.0" layoutY="206.0" prefHeight="39.0" prefWidth="221.0" promptText="Username" />
-                        <PasswordField fx:id="password" layoutX="185.0" layoutY="283.0" prefHeight="38.0" prefWidth="224.0" promptText="Password" />
-                        <Button fx:id="loginButton" layoutX="165.0" layoutY="365.0" mnemonicParsing="false" onAction="#switchToScannerUI" prefHeight="52.0" prefWidth="113.0" stylesheets="@../../../../../css/style.css" text="Log In" textFill="WHITE">
+                        <TextField fx:id="username" layoutX="115.0" layoutY="188.0" prefHeight="39.0" prefWidth="281.0" promptText="Username" />
+                        <PasswordField fx:id="password" layoutX="114.0" layoutY="273.0" prefHeight="38.0" prefWidth="283.0" promptText="Password" />
+                        <Button fx:id="loginButton" layoutX="181.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToScannerUI" prefHeight="64.0" prefWidth="167.0" style="-fx-border-radius: 10px; -fx-background-radius: 10px; -fx-background-color: white; -fx-border-width: 1px; -fx-border-color: gray;" stylesheets="@../../../../../css/style.css" text="Log In" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
                         </Button>
-                        <Label fx:id="wrongLogin" layoutX="50.0" layoutY="142.0" prefHeight="48.0" prefWidth="437.0" style="x: red;" textFill="#00b2f0">
-                           <font>
-                              <Font name="System Bold Italic" size="18.0" />
-                           </font>
-                        </Label>
-                        <Hyperlink fx:id="forgotPass" layoutX="185.0" layoutY="329.0" text="Forgot Password" textFill="#5eafff" />
-                        <Hyperlink layoutX="313.0" layoutY="329.0" prefHeight="24.0" prefWidth="98.0" text="Register Account" />
+                        <Hyperlink fx:id="forgotPass" layoutX="307.0" layoutY="311.0" text="Forgot Password" textFill="#5eafff" />
+                        <Hyperlink layoutX="326.0" layoutY="446.0" prefHeight="24.0" prefWidth="98.0" text="Register Account" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="5.0" layoutY="1335.0" prefHeight="422.0" prefWidth="512.0">
