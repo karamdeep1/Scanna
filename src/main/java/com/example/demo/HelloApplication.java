@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         try {
             primaryStage.setResizable(false);
-            Parent fxmlLoader = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
+            Parent fxmlLoader = FXMLLoader.load(HelloApplication.class.getResource("loginPage.fxml"));
             Scene scene = new Scene(fxmlLoader);
             primaryStage.setTitle("Scanna Login");
 
