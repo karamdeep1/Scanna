@@ -247,6 +247,7 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutX(0.0);
         anchorPane4.setLayoutY(0.0);
     }
+    /**
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     @Override
@@ -381,7 +382,7 @@ public class HelloController implements Initializable{
         }
     }
 
-
+**/
 
 
 
@@ -425,5 +426,10 @@ public class HelloController implements Initializable{
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
 
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

@@ -138,7 +138,7 @@
                   </Button>
                   <VBox prefHeight="306.0" prefWidth="174.0">
                      <children>
-                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" text="Search">
+                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Search">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
