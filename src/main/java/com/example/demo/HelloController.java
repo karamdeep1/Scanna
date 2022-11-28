@@ -155,7 +155,7 @@ public class HelloController implements Initializable{
 
     //Switching between the login page and the UI
     public void switchToLogIn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setTitle("Scanna Login");
