@@ -20,9 +20,9 @@
          <top>
             <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="78.0" prefWidth="911.0" style="-fx-background-color: #E42217;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="topBar" alignment="CENTER" prefHeight="96.0" prefWidth="911.0" style="-fx-background-color: lightseagreen;" text="SCANNA" textFill="WHITE">
+                  <Label fx:id="topBar" alignment="CENTER" prefHeight="96.0" prefWidth="911.0" style="-fx-background-color: linear-gradient( skyblue,white);" text="SCANNA" textFill="#00b2f0">
                      <font>
-                        <Font name="Lucida Sans Demibold Italic" size="35.0" />
+                        <Font name="Lucida Bright" size="35.0" />
                      </font>
                   </Label>
                </children></HBox>
@@ -30,15 +30,15 @@
          <center>
             <AnchorPane prefHeight="449.0" prefWidth="731.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="anchorPane" prefHeight="456.0" prefWidth="735.0">
+                  <AnchorPane fx:id="anchorPane" prefHeight="456.0" prefWidth="735.0" style="-fx-background-color: white;">
                      <children>
-                        <TextField fx:id="searchBar" layoutX="48.0" layoutY="32.0" prefHeight="46.0" prefWidth="638.0" promptText="Keywords..." />
+                        <TextField fx:id="searchBar" layoutX="67.0" layoutY="33.0" prefHeight="46.0" prefWidth="602.0" promptText="Keywords..." />
                         <Label fx:id="notAdminLabel" layoutX="48.0" layoutY="84.0" prefHeight="33.0" prefWidth="639.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="barcodeTableView" layoutX="48.0" layoutY="120.0" prefHeight="309.0" prefWidth="600.0">
+                        <TableView fx:id="barcodeTableView" layoutX="67.0" layoutY="117.0" prefHeight="309.0" prefWidth="602.0">
                           <columns>
                             <TableColumn fx:id="itemIDTableColumn" prefWidth="100.0" text="Item ID" />
                               <TableColumn fx:id="employeeIDTableColumn" prefWidth="100.0" text="Employee ID" />
@@ -48,11 +48,11 @@
                               <TableColumn fx:id="descriptionTableColumn" prefWidth="100.0" text="Description" />
                           </columns>
                         </TableView>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="anchorPane2" layoutX="-1.0" layoutY="456.0" prefHeight="456.0" prefWidth="735.0">
-                     <children>
-                        <Label layoutX="302.0" layoutY="208.0" prefHeight="68.0" prefWidth="102.0" text="this is scan" />
+                        <AnchorPane fx:id="anchorPane2" layoutX="-364.0" layoutY="99.0" prefHeight="456.0" prefWidth="735.0">
+                           <children>
+                              <Label layoutX="302.0" layoutY="208.0" prefHeight="68.0" prefWidth="102.0" text="this is scan" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPane3" layoutX="3.0" layoutY="912.0" prefHeight="456.0" prefWidth="735.0">
@@ -110,9 +110,9 @@
             </AnchorPane>
          </center>
          <left>
-            <AnchorPane fx:id="sideBar" prefHeight="455.0" prefWidth="173.0" style="-fx-background-color: lightskyblue;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="sideBar" prefHeight="455.0" prefWidth="173.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" stylesheets="@../../../../../css/style.css" text="Log Out">
+                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Log Out">
                      <font>
                         <Font name="Dubai Regular" size="17.0" />
                      </font>
@@ -127,9 +127,9 @@
                         <Insets left="-30.0" />
                      </padding>
                   </Button>
-                  <VBox prefHeight="306.0" prefWidth="174.0">
+                  <VBox prefHeight="306.0" prefWidth="174.0" style="-fx-background-color: white;">
                      <children>
-                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Search">
+                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Search">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -144,7 +144,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Scan">
+                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Scan">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Create">
+                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Create">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -174,7 +174,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Settings">
+                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Settings">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
