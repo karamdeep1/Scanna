@@ -112,7 +112,7 @@
          <left>
             <AnchorPane fx:id="sideBar" prefHeight="455.0" prefWidth="173.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" stylesheets="@../../../../../css/style.css" text="Log Out">
+                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Log Out">
                      <font>
                         <Font name="Dubai Regular" size="17.0" />
                      </font>
@@ -129,7 +129,7 @@
                   </Button>
                   <VBox prefHeight="306.0" prefWidth="174.0" style="-fx-background-color: white;">
                      <children>
-                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Search">
+                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Search">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -144,7 +144,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Scan">
+                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Scan">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Create">
+                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Create">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -174,7 +174,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/style.css" text="Settings">
+                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Settings">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
