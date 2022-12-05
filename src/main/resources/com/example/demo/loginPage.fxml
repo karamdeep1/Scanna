@@ -21,11 +21,6 @@
                   <Glow />
                </effect>
                <children>
-                  <Label fx:id="wrongLogin" layoutX="22.0" layoutY="177.0" prefHeight="82.0" prefWidth="347.0" style="x: red;" textFill="#00b2f0">
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Label>
                   <AnchorPane layoutY="1450.0" prefHeight="457.0" prefWidth="391.0">
                      <children>
                         <Label layoutX="54.0" layoutY="43.0" prefHeight="58.0" prefWidth="282.0" text="Security question will be here" />
@@ -74,6 +69,15 @@
                            </font>
                         </Button>
                         <ComboBox layoutX="76.0" layoutY="243.0" prefHeight="25.0" prefWidth="239.0" promptText="Select Security question" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="-4.0" layoutY="948.0" prefHeight="489.0" prefWidth="396.0" style="-fx-background-color: linear-gradient(lightskyblue,white);">
+                     <children>
+                        <Label fx:id="wrongLogin" layoutX="34.0" layoutY="205.0" prefHeight="82.0" prefWidth="347.0" style="x: red;" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>
