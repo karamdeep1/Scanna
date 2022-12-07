@@ -129,6 +129,12 @@ public class HelloController implements Initializable{
     @FXML
     private Button secondSearchButton;
     @FXML
+    private AnchorPane registerAccount;
+    @FXML
+    private AnchorPane forgotPassword;
+    @FXML
+    private AnchorPane original;
+    @FXML
     private ImageView barcodeImage;
     private String barcodeID;
     private String employeeID;
@@ -148,11 +154,37 @@ public class HelloController implements Initializable{
     private Label barcodeWarningLabel;
     @FXML
     private Label pngWarningLabel;
+    @FXML
+    private Hyperlink forgotPass;
+    @FXML
+    private Hyperlink registerAcc;
+    @FXML
+    private Hyperlink back1;
+    @FXML
+    private Hyperlink back2;
 
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
     userClass user1 = new userClass(true,"user","password");
 
+    public void switchToForgotPassword(ActionEvent event) throws IOException
+    {
+        original.setLayoutY(1450);
+        registerAccount.setLayoutY(1931);
+        forgotPassword.setLayoutY(948);
+    }
+    public void switchToRegisterAccount(ActionEvent event) throws IOException
+    {
+        original.setLayoutY(1931);
+        forgotPassword.setLayoutY(1450);
+        registerAccount.setLayoutY(948);
+    }
+    public void goBack(ActionEvent event) throws IOException
+    {
+        original.setLayoutY(948);
+        forgotPassword.setLayoutY(1450);
+        registerAccount.setLayoutY(1931);
+    }
     //Switching between the login page and the UI
     public void switchToLogIn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
@@ -247,7 +279,7 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutX(0.0);
         anchorPane4.setLayoutY(0.0);
     }
-    /**
+
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     @Override
@@ -382,7 +414,7 @@ public class HelloController implements Initializable{
         }
     }
 
-**/
+
 
 
 
@@ -426,10 +458,5 @@ public class HelloController implements Initializable{
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
 
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
