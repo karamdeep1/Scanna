@@ -23,24 +23,39 @@
                <children>
                   <AnchorPane layoutY="1450.0" prefHeight="457.0" prefWidth="391.0">
                      <children>
-                        <Label layoutX="54.0" layoutY="43.0" prefHeight="58.0" prefWidth="282.0" text="Security question will be here" />
-                        <TextField layoutX="54.0" layoutY="183.0" prefHeight="38.0" prefWidth="283.0" promptText="Input new password">
+                        <Label layoutX="55.0" layoutY="115.0" prefHeight="58.0" prefWidth="282.0" text="Security question will be here" />
+                        <TextField layoutX="54.0" layoutY="245.0" prefHeight="38.0" prefWidth="283.0" promptText="Input new password">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <TextField layoutX="54.0" layoutY="256.0" prefHeight="38.0" prefWidth="283.0" promptText="confirm password">
+                        <TextField layoutX="54.0" layoutY="298.0" prefHeight="38.0" prefWidth="283.0" promptText="confirm password">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <TextField layoutX="54.0" layoutY="111.0" prefHeight="38.0" prefWidth="283.0" promptText="Enter security answer">
+                        <TextField layoutX="53.0" layoutY="191.0" prefHeight="38.0" prefWidth="283.0" promptText="Enter security answer">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <Button layoutX="130.0" layoutY="330.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
+                        <Button layoutX="130.0" layoutY="357.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
+                        <TextField fx:id="EnterUser" layoutX="53.0" layoutY="34.0" prefHeight="38.0" prefWidth="283.0" promptText="Enter Username">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Button layoutX="139.0" layoutY="89.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-color: gray; -fx-background-radius: 10;" text="Submit Username" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="135.0" layoutY="72.0" text="Username Not Found" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
                   <AnchorPane layoutY="1931.0" prefHeight="457.0" prefWidth="391.0">
                      <children>
