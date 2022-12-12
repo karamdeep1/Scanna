@@ -23,7 +23,6 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.scene.paint.Color;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,16 +32,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-
-
 
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeException;
@@ -59,9 +51,6 @@ public class HelloController implements Initializable{
     public HelloController() {
 
     }
-    Color value;
-    @FXML
-    private Button updateButton;
     @FXML
     private Button Searchbtn;
     @FXML
@@ -226,20 +215,6 @@ public class HelloController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-    public void changeColor(ActionEvent event) {
-        value = ColorPicker.getValue();
-    }
-    public void updateAll(ActionEvent event){
-        sideBar.setBackground(new Background(new BackgroundFill(value, null , null)));
-        topBar.setBackground(new Background(new BackgroundFill(value, null , null)));
-        Searchbtn.setBackground(new Background(new BackgroundFill(value, null, null)));
-        Scanbtn.setBackground(new Background(new BackgroundFill(value, null, null)));
-        Createbtn.setBackground(new Background(new BackgroundFill(value, null, null)));
-        Settingsbtn.setBackground(new Background(new BackgroundFill(value, null, null)));
-        LogOutButton.setBackground(new Background(new BackgroundFill(value, null, null)));
-        CreateBarcode.setBackground(new Background(new BackgroundFill(value, null, null)));
-    }
-
 
     public void switchToScannerUI(ActionEvent event) throws IOException {
         if(username.getText().equals(user1.getUsername()) && password.getText().equals(user1.getPassword())) {
