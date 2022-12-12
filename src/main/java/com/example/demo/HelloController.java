@@ -162,6 +162,38 @@ public class HelloController implements Initializable{
     private Hyperlink back1;
     @FXML
     private Hyperlink back2;
+    @FXML
+    private Button FPSubmitUser;
+    @FXML
+    private TextField FPUserTextField;
+    @FXML
+    private Label FPUserLabel;
+    @FXML
+    private Label FPSQLabel;
+    @FXML
+    private TextField FPSQAnswer;
+    @FXML
+    private TextField FPNewPassword;
+    @FXML
+    private TextField FPConfirmPassword;
+    @FXML
+    private Button FPSubmit;
+    @FXML
+    private Label RALabel;
+    @FXML
+    private TextField RAUser;
+    @FXML
+    private TextField RAPassword;
+    @FXML
+    private TextField RASQ;
+    @FXML
+    private TextField RASQAnswer;
+    @FXML
+    private Label RAWarningLabel;
+    @FXML
+    private Button RACreateAccount;
+    @FXML
+    private CheckBox RACheckBox;
 
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
@@ -456,7 +488,6 @@ public class HelloController implements Initializable{
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
-
         }
     }
 }

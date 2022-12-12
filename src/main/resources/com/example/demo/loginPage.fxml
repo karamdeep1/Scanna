@@ -10,9 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="474.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<AnchorPane prefHeight="474.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
       <BorderPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="735.0" style="-fx-background-color: white;">
          <left>
@@ -23,84 +22,85 @@
                <children>
                   <AnchorPane fx:id="forgotPassword" layoutY="1450.0" prefHeight="457.0" prefWidth="391.0">
                      <children>
-                        <Label layoutX="55.0" layoutY="82.0" prefHeight="58.0" prefWidth="282.0" text="Security question will be here" />
-                        <TextField layoutX="54.0" layoutY="218.0" prefHeight="38.0" prefWidth="283.0" promptText="Input new password">
+                        <Label fx:id="FPSQLabel" layoutX="55.0" layoutY="82.0" prefHeight="58.0" prefWidth="282.0" text="Security question will be here" />
+                        <TextField fx:id="FPNewPassword" layoutX="54.0" layoutY="218.0" prefHeight="38.0" prefWidth="283.0" promptText="Input new password">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <TextField layoutX="54.0" layoutY="288.0" prefHeight="38.0" prefWidth="283.0" promptText="confirm password">
+                        <TextField fx:id="FPConfirmPassword" layoutX="54.0" layoutY="288.0" prefHeight="38.0" prefWidth="283.0" promptText="confirm password">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <TextField layoutX="54.0" layoutY="148.0" prefHeight="38.0" prefWidth="283.0" promptText="Enter security question answer">
+                        <TextField fx:id="FPSQAnswer" layoutX="54.0" layoutY="148.0" prefHeight="38.0" prefWidth="283.0" promptText="Enter security question answer">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <Button layoutX="131.0" layoutY="348.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSubmit" layoutX="131.0" layoutY="348.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Hyperlink fx:id="back1" layoutX="322.0" layoutY="419.0" onAction="#goBack" text="Go Back" />
-                        <TextField layoutX="131.0" layoutY="24.0" prefHeight="38.0" prefWidth="227.0" promptText="Enter Username">
+                        <TextField fx:id="FPUserTextField" layoutX="131.0" layoutY="24.0" prefHeight="38.0" prefWidth="227.0" promptText="Enter Username">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSubmitUser" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="185.0" layoutY="65.0" text="Username Not Found" textFill="#00b2f0">
+                        <Label fx:id="FPUserLabel" layoutX="185.0" layoutY="65.0" text="Username Not Found" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Label>
+                        <Hyperlink fx:id="back1" layoutX="21.0" layoutY="398.0" onAction="#goBack" text="Go Back" />
                      </children></AnchorPane>
                   <AnchorPane fx:id="registerAccount" layoutY="1931.0" prefHeight="457.0" prefWidth="391.0">
                      <children>
-                        <Text fill="#00b2f0" layoutX="81.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register for account" wrappingWidth="230.93682861328125">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font></Text>
-                        <TextField layoutX="77.0" layoutY="100.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Username (must be unique)">
+                        <TextField fx:id="RAUser" layoutX="77.0" layoutY="100.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Username (must be unique)">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="77.0" layoutY="160.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Password (make it complex)">
+                        <TextField fx:id="RAPassword" layoutX="77.0" layoutY="160.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Password (make it complex)">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="77.0" layoutY="280.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter answer to security question">
+                        <TextField fx:id="RASQAnswer" layoutX="77.0" layoutY="280.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter answer to security question">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Button layoutX="111.0" layoutY="339.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text=" Create Account" textFill="#00b2f0">
+                        <Button fx:id="RACreateAccount" layoutX="111.0" layoutY="339.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text=" Create Account" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Hyperlink fx:id="back2" layoutX="14.0" layoutY="14.0" onAction="#goBack" text="Go Back" />
-                        <TextField layoutX="77.0" layoutY="220.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Security Question">
+                        <Hyperlink fx:id="back2" layoutX="22.0" layoutY="397.0" onAction="#goBack" text="Go Back" />
+                        <TextField fx:id="RASQ" layoutX="77.0" layoutY="220.0" prefHeight="38.0" prefWidth="238.0" promptText="Enter Security Question">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="74.0" layoutY="318.0" text="Make sure this is something you can remember" textFill="#00b2f0">
+                        <Label fx:id="RAWarningLabel" layoutX="74.0" layoutY="318.0" text="Make sure this is something you can remember" textFill="#00b2f0">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Label>
-                        <CheckBox layoutX="147.0" layoutY="425.0" mnemonicParsing="false" text="Are You Sure?" textFill="#00b2f0" />
+                        <CheckBox fx:id="RACheckBox" layoutX="147.0" layoutY="425.0" mnemonicParsing="false" text="Are You Sure?" textFill="#00b2f0" />
+                        <Label fx:id="RALabel" layoutX="97.0" layoutY="47.0" prefHeight="37.0" prefWidth="199.0" text="Register Account" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="original" layoutX="0.0" layoutY="948.0" prefHeight="489.0" prefWidth="396.0" style="-fx-background-color: linear-gradient(lightskyblue,white);">
                      <children>
-                        <Label fx:id="wrongLogin" layoutX="34.0" layoutY="205.0" prefHeight="82.0" prefWidth="347.0" style="x: red;" text="test" textFill="#00b2f0">
+                        <Label fx:id="wrongLogin" layoutX="34.0" layoutY="205.0" prefHeight="82.0" prefWidth="347.0" style="x: red;" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
