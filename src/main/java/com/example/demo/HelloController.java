@@ -184,6 +184,9 @@ public class HelloController implements Initializable{
     @FXML
     private CheckBox RACheckBox;
 
+    DatabaseConnection connectNow = new DatabaseConnection();
+    Connection connectDB = connectNow.getDBConnection();
+
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
     userClass user1 = new userClass(true,"user","password");
@@ -193,6 +196,12 @@ public class HelloController implements Initializable{
         original.setLayoutY(1450);
         registerAccount.setLayoutY(1931);
         forgotPassword.setLayoutY(948);
+        FPSQLabel.setVisible(false);
+        FPSQAnswer.setVisible(false);
+        FPNewPassword.setVisible(false);
+        FPConfirmPassword.setVisible(false);
+        FPSubmit.setVisible(false);
+        FPUserLabel.setVisible(false);
     }
     public void switchToRegisterAccount(ActionEvent event) throws IOException
     {
@@ -214,6 +223,28 @@ public class HelloController implements Initializable{
         stage.setTitle("Scanna Login");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void registerAccount()
+    {
+
+    }
+
+    public void forgotPassword(ActionEvent event) throws IOException
+    {
+        if(FPUserTextField.getText().equals("") || FPUserTextField == null)
+        {
+            FPUserLabel.setVisible(true);
+        }
+        else
+        {
+            FPSQLabel.setVisible(true);
+            FPSQAnswer.setVisible(true);
+            FPNewPassword.setVisible(true);
+            FPConfirmPassword.setVisible(true);
+            FPSubmit.setVisible(true);
+            FPUserLabel.setVisible(true);
+        }
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException {
@@ -287,8 +318,6 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutY(0.0);
     }
 
-    DatabaseConnection connectNow = new DatabaseConnection();
-    Connection connectDB = connectNow.getDBConnection();
     @Override
     public void initialize(URL url, ResourceBundle resource){
 

@@ -35,7 +35,7 @@
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <Button fx:id="FPSubmit" layoutX="131.0" layoutY="348.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSubmit" layoutX="131.0" layoutY="348.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -45,7 +45,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="FPSubmitUser" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSubmitUser" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="42.0" prefWidth="102.0" stylesheets="@../../../../../css/style.css" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -74,7 +74,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="RACreateAccount" layoutX="111.0" layoutY="339.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" style="-fx-border-radius: 10; -fx-border-color: grey; -fx-background-color: white; -fx-background-radius: 10;" text=" Create Account" textFill="#00b2f0">
+                        <Button fx:id="RACreateAccount" layoutX="111.0" layoutY="339.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" stylesheets="@../../../../../css/style.css" text=" Create Account" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -127,7 +127,7 @@
                         </Label>
                         <TextField fx:id="username" layoutX="115.0" layoutY="188.0" prefHeight="39.0" prefWidth="281.0" promptText="Username" />
                         <PasswordField fx:id="password" layoutX="114.0" layoutY="273.0" prefHeight="38.0" prefWidth="283.0" promptText="Password" />
-                        <Button fx:id="loginButton" layoutX="181.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToScannerUI" prefHeight="64.0" prefWidth="167.0" style="-fx-border-radius: 10px; -fx-background-radius: 10px; -fx-background-color: white; -fx-border-width: 1px; -fx-border-color: gray;" stylesheets="@../../../../../css/style.css" text="Log In" textFill="#00b2f0">
+                        <Button fx:id="loginButton" layoutX="181.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToScannerUI" prefHeight="64.0" prefWidth="167.0" stylesheets="@../../../../../css/style.css" text="Log In" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>

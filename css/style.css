@@ -21,16 +21,42 @@
  */
 
 .button {
-    -fx-background-color: #00ffff;
+
     //-fx-effect: dropshadow(three-pass-box, rgb(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-border-color: grey;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-background-color: white;
 }
 .button:hover {
     //-fx-background-color: #ff4843;
-    -fx-background-color: #7fffd4;
+    -fx-background-color: lightgrey;
+    -fx-border-color: grey;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+
 }
 .button:pressed {
-    -fx-background-color: #008b8b
+    -fx-background-color: grey;
+    -fx-border-color: grey;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+
+
+
 }
+/*
 .button:focused {
     -fx-border-width: 0px, 0px, 0px, 3px;
+    -fx-border-color: grey;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+
+
+
 }
+ */
