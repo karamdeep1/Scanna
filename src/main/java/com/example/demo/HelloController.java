@@ -28,10 +28,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -186,7 +184,9 @@ public class HelloController implements Initializable{
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
-
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    ArrayList<String> usernames = new ArrayList<String>();
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
     userClass user1 = new userClass(true,"user","password");
@@ -229,22 +229,44 @@ public class HelloController implements Initializable{
     {
 
     }
-
-    public void forgotPassword(ActionEvent event) throws IOException
-    {
-        if(FPUserTextField.getText().equals("") || FPUserTextField == null)
+    public void forgotPassword(ActionEvent event) throws IOException, SQLException {
+        String fpquery = "select Employee_ID from employee";
+        pst = connectDB.prepareStatement(fpquery);
+        rs = pst.executeQuery();
+        boolean tf = false;
+        while(rs.next())
         {
-            FPUserLabel.setVisible(true);
+            usernames.add(rs.getString("Employee_ID"));
         }
-        else
+        for(int i = 0; i < usernames.size(); i++)
+        {
+            if(!(FPUserTextField.getText().equals(usernames.get(i))) || FPUserTextField == null)
+            {
+                FPUserLabel.setVisible(true);
+                tf = true;
+            }
+            else
+            {
+                FPUserLabel.setVisible(false);
+                tf = false;
+            }
+        }
+        if(tf == false)
         {
             FPSQLabel.setVisible(true);
             FPSQAnswer.setVisible(true);
             FPNewPassword.setVisible(true);
             FPConfirmPassword.setVisible(true);
             FPSubmit.setVisible(true);
+            //FPUserLabel.setVisible(false);
+        }
+        /*
+        if(!(FPUserTextField.getText().equals()) || FPUserTextField == null)
+        {
             FPUserLabel.setVisible(true);
         }
+
+         */
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException {
