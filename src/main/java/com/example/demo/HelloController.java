@@ -187,6 +187,9 @@ public class HelloController implements Initializable{
     PreparedStatement pst = null;
     ResultSet rs = null;
     ArrayList<String> usernames = new ArrayList<String>();
+    ArrayList<String> emp_id = new ArrayList<String>();
+    ArrayList<String> SQ = new ArrayList<String>();
+    ArrayList<String> SQA = new ArrayList<String>();
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
     userClass user1 = new userClass(true,"user","password");
@@ -247,8 +250,10 @@ public class HelloController implements Initializable{
             }
             else
             {
+
                 FPUserLabel.setVisible(false);
                 tf = false;
+                break;
             }
         }
         if(tf == false)
@@ -258,15 +263,20 @@ public class HelloController implements Initializable{
             FPNewPassword.setVisible(true);
             FPConfirmPassword.setVisible(true);
             FPSubmit.setVisible(true);
-            //FPUserLabel.setVisible(false);
         }
-        /*
-        if(!(FPUserTextField.getText().equals()) || FPUserTextField == null)
+        String SQquery = "SELECT Emp_ID, SQ, SQ_Answer FROM security_questions";
+        Statement s1 = connectDB.createStatement();
+        ResultSet rs1 = s1.executeQuery(SQquery);
+        while(rs1.next())
         {
-            FPUserLabel.setVisible(true);
+            String empid = rs1.getString("Emp_ID");
+            emp_id.add(empid);
+            String sq = rs1.getString("SQ");
+            SQ.add(sq);
+            String sqa = rs1.getString("SQ_Answer");
+            SQA.add(sqa);
         }
 
-         */
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException {
@@ -345,7 +355,7 @@ public class HelloController implements Initializable{
 
 
         //SQL Query executed in backend database
-        String barcodeViewQuery = "SELECT item.Item_ID, item_log_history.employee_ID, item.Clearance, item.Type, item_log_history.Location, item.Description FROM item, item_log_history";
+        String barcodeViewQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
 
         try{
 
@@ -354,12 +364,12 @@ public class HelloController implements Initializable{
 
             while(queryOutput.next())
             {
-                String queryItemID = queryOutput.getString("Item_ID");
+                String queryItemID = queryOutput.getString("item_ID");
                 String queryEmployeeID = queryOutput.getString("employee_ID");
-                Integer queryClearance = queryOutput.getInt("Clearance");
-                String queryType = queryOutput.getString("Type");
+                Integer queryClearance = queryOutput.getInt("clearance");
+                String queryType = queryOutput.getString("type");
                 String queryLocation = queryOutput.getString("Location");
-                String queryDescription = queryOutput.getString("Description");
+                String queryDescription = queryOutput.getString("description");
 
                 //Populate ObservableList
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID, queryEmployeeID, queryClearance, queryType, queryLocation, queryDescription));
@@ -452,14 +462,6 @@ public class HelloController implements Initializable{
             {
                 sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
 
-                barcodeTableView.setItems(sortedData);
-            }
-
-            if(barcodeTableView != null)
-            {
-                sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
-
-                //Apply filtered and sorted data to the table view
                 barcodeTableView.setItems(sortedData);
             }
 
