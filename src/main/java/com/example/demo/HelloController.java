@@ -170,6 +170,8 @@ public class HelloController implements Initializable{
     @FXML
     private Label FPSAIncorrectLabel;
     @FXML
+    private Label FPPasswordIncorrectLabel;
+    @FXML
     private Label RALabel;
     @FXML
     private TextField RAUser;
@@ -211,6 +213,9 @@ public class HelloController implements Initializable{
         FPConfirmPassword.setVisible(false);
         FPSubmit.setVisible(false);
         FPUserLabel.setVisible(false);
+        FPSAIncorrectLabel.setVisible(false);
+        FPSASubmit.setVisible(false);
+        FPPasswordIncorrectLabel.setVisible(false);
     }
     public void switchToRegisterAccount(ActionEvent event) throws IOException
     {
@@ -243,7 +248,6 @@ public class HelloController implements Initializable{
         pst = connectDB.prepareStatement(fpquery);
         rs = pst.executeQuery();
         boolean tf = false;
-        FPSAIncorrectLabel.setVisible(false);
         while(rs.next())
         {
             usernames.add(rs.getString("Employee_ID"));
@@ -267,9 +271,7 @@ public class HelloController implements Initializable{
         {
             FPSQLabel.setVisible(true);
             FPSQAnswer.setVisible(true);
-            FPNewPassword.setVisible(true);
-            FPConfirmPassword.setVisible(true);
-            FPSubmit.setVisible(true);
+            FPSASubmit.setVisible(true);
             String SQquery = "SELECT Emp_ID, SQ, SQ_Answer FROM security_questions";
             Statement s1 = connectDB.createStatement();
             ResultSet rs1 = s1.executeQuery(SQquery);
@@ -311,8 +313,32 @@ public class HelloController implements Initializable{
             FPSubmit.setVisible(true);
         }
     }
-    public void forgotPasswordFinalSubmit(ActionEvent event) throws IOException {
-        
+    public void forgotPasswordFinalSubmit(ActionEvent event) throws IOException, SQLException {
+        if(!(FPNewPassword.getText().equals(FPConfirmPassword.getText())) || FPConfirmPassword == null || FPNewPassword == null) {
+            FPPasswordIncorrectLabel.setText("Passwords dont match");
+            FPPasswordIncorrectLabel.setVisible(true);
+        }
+        else if(FPNewPassword.getText().equals("") || FPConfirmPassword.getText().equals(""))
+        {
+            FPPasswordIncorrectLabel.setText("Password must contain characters");
+            FPPasswordIncorrectLabel.setVisible(true);
+        }
+        else {
+            FPPasswordIncorrectLabel.setVisible(false);
+            String FPFSQuery = "UPDATE employee SET Password = " +  "'" + FPConfirmPassword.getText() + "'" + " where Employee_ID = " +  "'" + usernames.get(index) + "'";
+            pst = connectDB.prepareStatement(FPFSQuery);
+            pst.execute(FPFSQuery);
+            FPUserTextField.setText("");
+            FPSQLabel.setText("");
+            FPSQAnswer.setText("");
+            FPNewPassword.setText("");
+            FPConfirmPassword.setText("");
+            FPSQLabel.setVisible(false);
+            FPSQAnswer.setVisible(false);
+            FPSASubmit.setVisible(false);
+            FPNewPassword.setVisible(false);
+            FPConfirmPassword.setVisible(false);
+        }
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException {

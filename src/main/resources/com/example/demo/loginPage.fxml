@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="474.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<AnchorPane prefHeight="474.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
       <BorderPane layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="735.0" style="-fx-background-color: white;">
          <left>
@@ -35,7 +35,7 @@
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font></TextField>
-                        <Button fx:id="FPSubmit" layoutX="131.0" layoutY="348.0" mnemonicParsing="false" onAction="#forgotPasswordFinalSubmit" prefHeight="50.0" prefWidth="130.0" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSubmit" layoutX="131.0" layoutY="359.0" mnemonicParsing="false" onAction="#forgotPasswordFinalSubmit" prefHeight="50.0" prefWidth="130.0" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -56,12 +56,17 @@
                            </font>
                         </Label>
                         <Hyperlink fx:id="back1" layoutX="21.0" layoutY="398.0" onAction="#goBack" text="Go Back" />
-                        <Button fx:id="FPSASubmit" layoutX="152.0" layoutY="186.0" mnemonicParsing="false" onAction="#FPSASubmitButton" prefHeight="5.0" prefWidth="66.0" stylesheets="@../../../../../css/style.css" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="FPSASubmit" layoutX="152.0" layoutY="189.0" mnemonicParsing="false" onAction="#FPSASubmitButton" prefHeight="5.0" prefWidth="66.0" stylesheets="@../../../../../css/style.css" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="10.0" />
                            </font>
                         </Button>
                         <Label fx:id="FPSAIncorrectLabel" layoutX="230.0" layoutY="187.0" prefHeight="25.0" prefWidth="98.0" text="Incorrect answer" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="FPPasswordIncorrectLabel" layoutX="99.0" layoutY="326.0" prefHeight="26.0" prefWidth="198.0" text="Passwords dont match" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -84,7 +89,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="RACreateAccount" layoutX="111.0" layoutY="339.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" stylesheets="@../../../../../css/style.css" text=" Create Account" textFill="#00b2f0">
+                        <Button fx:id="RACreateAccount" layoutX="111.0" layoutY="339.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="70.0" prefWidth="170.0" stylesheets="@../../../../../css/style.css" text=" Create Account" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
