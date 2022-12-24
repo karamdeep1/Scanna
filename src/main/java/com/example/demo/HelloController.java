@@ -241,7 +241,19 @@ public class HelloController implements Initializable{
 
     public void registerAccount()
     {
+        if(RAUser.getText().equals("") || RAPassword.getText().equals("") || RASQ.getText().equals("") || RASQAnswer.getText().equals("") || RAUser == null || RAPassword == null || RASQ == null || RASQAnswer == null)
+        {
+            RAWarningLabel.setText("All fields must be completed");
+        }
+        else if(!(RACheckBox.isSelected()))
+        {
+            RAWarningLabel.setText("Make sure the checkbox is checked");
+        }
+        else
+        {
+            RAWarningLabel.setText("Make sure this is something you can remember");
 
+        }
     }
     public void forgotPassword(ActionEvent event) throws IOException, SQLException {
         String fpquery = "select Employee_ID from employee";
