@@ -246,11 +246,11 @@ public class HelloController implements Initializable{
             if(!(FPUserTextField.getText().equals(usernames.get(i))) || FPUserTextField == null)
             {
                 FPUserLabel.setVisible(true);
+                FPSQLabel.setText("");
                 tf = true;
             }
             else
             {
-
                 FPUserLabel.setVisible(false);
                 tf = false;
                 break;
@@ -263,20 +263,37 @@ public class HelloController implements Initializable{
             FPNewPassword.setVisible(true);
             FPConfirmPassword.setVisible(true);
             FPSubmit.setVisible(true);
+            String SQquery = "SELECT Emp_ID, SQ, SQ_Answer FROM security_questions";
+            Statement s1 = connectDB.createStatement();
+            ResultSet rs1 = s1.executeQuery(SQquery);
+            while(rs1.next())
+            {
+                String empid = rs1.getString("Emp_ID");
+                emp_id.add(empid);
+                String sq = rs1.getString("SQ");
+                SQ.add(sq);
+                String sqa = rs1.getString("SQ_Answer");
+                SQA.add(sqa);
+            }
+            int index = 0;
+            for(int i = 0; i < emp_id.size(); i++) {
+                if(emp_id.get(i).equals(FPUserTextField.getText()))
+                {
+                    index = i;
+                    FPUserLabel.setVisible(false);
+                    break;
+                }
+                else
+                {
+                    FPUserLabel.setVisible(true);
+                }
+            }
+            FPSQLabel.setText(SQ.get(index));
         }
-        String SQquery = "SELECT Emp_ID, SQ, SQ_Answer FROM security_questions";
-        Statement s1 = connectDB.createStatement();
-        ResultSet rs1 = s1.executeQuery(SQquery);
-        while(rs1.next())
-        {
-            String empid = rs1.getString("Emp_ID");
-            emp_id.add(empid);
-            String sq = rs1.getString("SQ");
-            SQ.add(sq);
-            String sqa = rs1.getString("SQ_Answer");
-            SQA.add(sqa);
-        }
+    }
 
+    public void forgotPasswordFinalSubmit(ActionEvent event) throws IOException {
+        
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException {
