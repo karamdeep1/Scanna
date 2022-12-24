@@ -166,6 +166,10 @@ public class HelloController implements Initializable{
     @FXML
     private Button FPSubmit;
     @FXML
+    private Button FPSASubmit;
+    @FXML
+    private Label FPSAIncorrectLabel;
+    @FXML
     private Label RALabel;
     @FXML
     private TextField RAUser;
@@ -181,6 +185,8 @@ public class HelloController implements Initializable{
     private Button RACreateAccount;
     @FXML
     private CheckBox RACheckBox;
+
+    static int index = 0;
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
@@ -237,6 +243,7 @@ public class HelloController implements Initializable{
         pst = connectDB.prepareStatement(fpquery);
         rs = pst.executeQuery();
         boolean tf = false;
+        FPSAIncorrectLabel.setVisible(false);
         while(rs.next())
         {
             usernames.add(rs.getString("Employee_ID"));
@@ -275,7 +282,7 @@ public class HelloController implements Initializable{
                 String sqa = rs1.getString("SQ_Answer");
                 SQA.add(sqa);
             }
-            int index = 0;
+
             for(int i = 0; i < emp_id.size(); i++) {
                 if(emp_id.get(i).equals(FPUserTextField.getText()))
                 {
@@ -291,7 +298,19 @@ public class HelloController implements Initializable{
             FPSQLabel.setText(SQ.get(index));
         }
     }
-
+    public void FPSASubmitButton(ActionEvent event) throws IOException {
+        if(FPSQAnswer.getText() == null || !(FPSQAnswer.getText().equals(SQA.get(index))))
+        {
+            FPSAIncorrectLabel.setVisible(true);
+        }
+        else
+        {
+            FPSAIncorrectLabel.setVisible(false);
+            FPNewPassword.setVisible(true);
+            FPConfirmPassword.setVisible(true);
+            FPSubmit.setVisible(true);
+        }
+    }
     public void forgotPasswordFinalSubmit(ActionEvent event) throws IOException {
         
     }
