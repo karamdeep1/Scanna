@@ -116,7 +116,9 @@ public class HelloController implements Initializable{
     @FXML
     private Button secondSearchButton;
     @FXML
-    private AnchorPane registerAccount;
+    private AnchorPane registerAccountFinalPage;
+    @FXML
+    private AnchorPane registerAccountFirstPage;
     @FXML
     private AnchorPane forgotPassword;
     @FXML
@@ -174,6 +176,8 @@ public class HelloController implements Initializable{
     @FXML
     private Label RALabel;
     @FXML
+    private Label RALabelFirstPage;
+    @FXML
     private TextField RAUser;
     @FXML
     private TextField RAPassword;
@@ -187,6 +191,22 @@ public class HelloController implements Initializable{
     private Button RACreateAccount;
     @FXML
     private CheckBox RACheckBox;
+    @FXML
+    private TextField RAFirstName;
+    @FXML
+    private TextField RALastName;
+    @FXML
+    private TextField RAEmail;
+    @FXML
+    private TextField RADateOfBirth;
+    @FXML
+    private TextField RASocialSecurityNumber;
+    @FXML
+    private Label RAFirstPageWarningLabel;
+    @FXML
+    private Button RAFirstPageNextPageButton;
+    @FXML
+    private Button RAFinalPagePreviousPageButton;
 
     static int index = 0;
 
@@ -205,7 +225,8 @@ public class HelloController implements Initializable{
     public void switchToForgotPassword(ActionEvent event) throws IOException
     {
         original.setLayoutY(1450);
-        registerAccount.setLayoutY(1931);
+        registerAccountFinalPage.setLayoutY(1931);
+        registerAccountFirstPage.setLayoutY(2797);
         forgotPassword.setLayoutY(948);
         FPSQLabel.setVisible(false);
         FPSQAnswer.setVisible(false);
@@ -217,17 +238,31 @@ public class HelloController implements Initializable{
         FPSASubmit.setVisible(false);
         FPPasswordIncorrectLabel.setVisible(false);
     }
-    public void switchToRegisterAccount(ActionEvent event) throws IOException
+    public void switchToRegisterAccountFirstPage(ActionEvent event) throws IOException
     {
         original.setLayoutY(1931);
         forgotPassword.setLayoutY(1450);
-        registerAccount.setLayoutY(948);
+        registerAccountFirstPage.setLayoutY(948);
+        registerAccountFinalPage.setLayoutY(2797);
     }
     public void goBack(ActionEvent event) throws IOException
     {
         original.setLayoutY(948);
         forgotPassword.setLayoutY(1450);
-        registerAccount.setLayoutY(1931);
+        registerAccountFinalPage.setLayoutY(1931);
+        registerAccountFirstPage.setLayoutY(2797);
+    }
+    public void switchToRegisterAccountFinalPage(ActionEvent event) throws IOException
+    {
+        original.setLayoutY(1931);
+        forgotPassword.setLayoutY(1450);
+        registerAccountFirstPage.setLayoutY(2797);
+        registerAccountFinalPage.setLayoutY(948);
+    }
+    public void previousButton(ActionEvent event) throws IOException
+    {
+        registerAccountFirstPage.setLayoutY(948);
+        registerAccountFinalPage.setLayoutY(2797);
     }
     //Switching between the login page and the UI
     public void switchToLogIn(ActionEvent event) throws IOException {
