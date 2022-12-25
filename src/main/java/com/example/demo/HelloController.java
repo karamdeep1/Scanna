@@ -224,10 +224,10 @@ public class HelloController implements Initializable{
 
     public void switchToForgotPassword(ActionEvent event) throws IOException
     {
-        original.setLayoutY(1450);
-        registerAccountFinalPage.setLayoutY(1931);
+        original.setLayoutY(1864);
+        registerAccountFinalPage.setLayoutY(2292);
         registerAccountFirstPage.setLayoutY(2797);
-        forgotPassword.setLayoutY(948);
+        forgotPassword.setLayoutY(1379);
         FPSQLabel.setVisible(false);
         FPSQAnswer.setVisible(false);
         FPNewPassword.setVisible(false);
@@ -240,28 +240,37 @@ public class HelloController implements Initializable{
     }
     public void switchToRegisterAccountFirstPage(ActionEvent event) throws IOException
     {
-        original.setLayoutY(1931);
-        forgotPassword.setLayoutY(1450);
-        registerAccountFirstPage.setLayoutY(948);
+        original.setLayoutY(2292);
+        forgotPassword.setLayoutY(1864);
+        registerAccountFirstPage.setLayoutY(1379);
         registerAccountFinalPage.setLayoutY(2797);
+        RAFirstPageWarningLabel.setVisible(false);
     }
     public void goBack(ActionEvent event) throws IOException
     {
-        original.setLayoutY(948);
-        forgotPassword.setLayoutY(1450);
-        registerAccountFinalPage.setLayoutY(1931);
+        original.setLayoutY(1379);
+        forgotPassword.setLayoutY(1864);
+        registerAccountFinalPage.setLayoutY(2292);
         registerAccountFirstPage.setLayoutY(2797);
     }
     public void switchToRegisterAccountFinalPage(ActionEvent event) throws IOException
     {
-        original.setLayoutY(1931);
-        forgotPassword.setLayoutY(1450);
-        registerAccountFirstPage.setLayoutY(2797);
-        registerAccountFinalPage.setLayoutY(948);
+        if(RAFirstName.getText().equals("") || RALastName.getText().equals("") || RADateOfBirth.getText().equals("") || RASocialSecurityNumber.getText().equals("") || RAFirstName == null || RALastName == null || RADateOfBirth == null || RASocialSecurityNumber == null)
+        {
+            RAFirstPageWarningLabel.setVisible(true);
+        }
+        else
+        {
+            RAFirstPageWarningLabel.setVisible(false);
+            original.setLayoutY(2292);
+            forgotPassword.setLayoutY(1864);
+            registerAccountFirstPage.setLayoutY(2797);
+            registerAccountFinalPage.setLayoutY(1379);
+        }
     }
     public void previousButton(ActionEvent event) throws IOException
     {
-        registerAccountFirstPage.setLayoutY(948);
+        registerAccountFirstPage.setLayoutY(1379);
         registerAccountFinalPage.setLayoutY(2797);
     }
     //Switching between the login page and the UI
