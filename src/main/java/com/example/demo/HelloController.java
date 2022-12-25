@@ -287,7 +287,6 @@ public class HelloController implements Initializable{
         else
         {
             RAWarningLabel.setText("Make sure this is something you can remember");
-
         }
     }
     public void forgotPassword(ActionEvent event) throws IOException, SQLException {
