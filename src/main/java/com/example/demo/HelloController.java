@@ -207,6 +207,8 @@ public class HelloController implements Initializable{
     private Button RAFirstPageNextPageButton;
     @FXML
     private Button RAFinalPagePreviousPageButton;
+    @FXML
+    private Label dateTimeLabel;
 
     static int index = 0;
 
@@ -283,8 +285,7 @@ public class HelloController implements Initializable{
         stage.show();
     }
 
-    public void registerAccount()
-    {
+    public void registerAccount() throws SQLException {
         if(RAUser.getText().equals("") || RAPassword.getText().equals("") || RASQ.getText().equals("") || RASQAnswer.getText().equals("") || RAUser == null || RAPassword == null || RASQ == null || RASQAnswer == null)
         {
             RAWarningLabel.setText("All fields must be completed");
@@ -296,6 +297,34 @@ public class HelloController implements Initializable{
         else
         {
             RAWarningLabel.setText("Make sure this is something you can remember");
+            String raquery = "";
+            if(!(RAEmail.getText().equals("")) || RAEmail != null)
+            {
+                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "'" + RAEmail.getText() + "'" + "," + "'" + RAPassword.getText() + "'" + "," + "NULL" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
+            }
+            else
+            {
+                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "NULL" + "," + "'" + RAPassword.getText() + "'" + "," + "NULL" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
+            }
+            pst = connectDB.prepareStatement(raquery);
+            pst.execute(raquery);
+            String rasqquery = "INSERT INTO security_questions VALUES(" + "'" + RAUser.getText() + "sq" + "'" + "," + "'" + RAUser.getText() + "'" + "," + "'" + RASQ.getText() + "'" + "," + "'" + RASQAnswer.getText() + "'" + ")";
+            pst = connectDB.prepareStatement(rasqquery);
+            pst.execute(rasqquery);
+            RAUser.setText("");
+            RAPassword.setText("");
+            RASQ.setText("");
+            RASQAnswer.setText("");
+            RAFirstName.setText("");
+            RALastName.setText("");
+            RAEmail.setText("");
+            RADateOfBirth.setText("");
+            RASocialSecurityNumber.setText("");
+            original.setLayoutY(2292);
+            forgotPassword.setLayoutY(1864);
+            registerAccountFirstPage.setLayoutY(1379);
+            registerAccountFinalPage.setLayoutY(2797);
+            RAFirstPageWarningLabel.setVisible(false);
         }
     }
     public void forgotPassword(ActionEvent event) throws IOException, SQLException {
