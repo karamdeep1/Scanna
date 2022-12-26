@@ -209,6 +209,8 @@ public class HelloController implements Initializable{
     private Button RAFinalPagePreviousPageButton;
     @FXML
     private Label dateTimeLabel;
+    ArrayList<String> loginUsers = new ArrayList<String>();
+    ArrayList<String> loginPasswords = new ArrayList<String>();
 
     static int index = 0;
 
@@ -425,7 +427,40 @@ public class HelloController implements Initializable{
         }
     }
 
-    public void switchToScannerUI(ActionEvent event) throws IOException {
+    public void switchToScannerUI(ActionEvent event) throws IOException, SQLException {
+        String userpass = "SELECT Employee_ID, Password FROM employee";
+        Statement ls = connectDB.createStatement();
+        rs = ls.executeQuery(userpass);
+        while(rs.next())
+        {
+            String queryUser = rs.getString("Employee_ID");
+            loginUsers.add(queryUser);
+            String queryPass = rs.getString("Password");
+            loginPasswords.add(queryPass);
+        }
+        for(int i = 0; i < loginUsers.size(); i++)
+        {
+            if(username.getText().equals(loginUsers.get(i)) && password.getText().equals(loginPasswords.get(i)))
+            {
+                wrongLogin.setText("Login Successful");
+                Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setTitle("Scanna");
+                stage.setScene(scene);
+                stage.show();
+                break;
+            }
+            else if(username.getText().isEmpty() && password.getText().isEmpty())
+            {
+                wrongLogin.setText("You need to type in your username and password");
+            }
+            else
+            {
+                wrongLogin.setText("Wrong username or password");
+            }
+        }
+        /*
         if(username.getText().equals(user1.getUsername()) && password.getText().equals(user1.getPassword())) {
             wrongLogin.setText("Login Successful");
             Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
@@ -441,6 +476,8 @@ public class HelloController implements Initializable{
         else {
             wrongLogin.setText("Wrong username or password");
         }
+
+         */
     }
 
     //Putting away anchor panes for later use

@@ -28,9 +28,7 @@ public class HelloApplication extends Application {
         {
             e.printStackTrace();
         }
-
     }
-    //hi
 
     public static void main(String[] args)
     {
