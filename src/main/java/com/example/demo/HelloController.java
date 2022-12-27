@@ -460,24 +460,6 @@ public class HelloController implements Initializable{
                 wrongLogin.setText("Wrong username or password");
             }
         }
-        /*
-        if(username.getText().equals(user1.getUsername()) && password.getText().equals(user1.getPassword())) {
-            wrongLogin.setText("Login Successful");
-            Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setTitle("Scanna");
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if(username.getText().isEmpty() && password.getText().isEmpty()) {
-            wrongLogin.setText("You need to type in your username and password");
-        }
-        else {
-            wrongLogin.setText("Wrong username or password");
-        }
-
-         */
     }
 
     //Putting away anchor panes for later use
@@ -700,5 +682,14 @@ public class HelloController implements Initializable{
             barcodeWarningLabel.setText("Barcode Generated");
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
         }
+    }
+    public void delete(ActionEvent event) throws IOException, SQLException
+    {
+
+    }
+
+    public void update(ActionEvent event) throws IOException, SQLException
+    {
+
     }
 }
