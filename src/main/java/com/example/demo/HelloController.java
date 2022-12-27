@@ -136,13 +136,13 @@ public class HelloController implements Initializable{
     @FXML
     private TextField pngBarcode;
     @FXML
+    private TextField clearanceBarcode;
+    @FXML
     private TextField descriptionBarcode;
     private static File a = new File("firstBarcode.png");
 
     @FXML
     private Label barcodeWarningLabel;
-    @FXML
-    private Label pngWarningLabel;
     @FXML
     private Hyperlink forgotPass;
     @FXML
@@ -243,11 +243,15 @@ public class HelloController implements Initializable{
     private CheckBox scanCheckBox;
     @FXML
     private Label scanWarningLabel;
+    @FXML
+    private Button scanChangeBarcodeID;
     ArrayList<String> loginUsers = new ArrayList<String>();
     ArrayList<String> loginPasswords = new ArrayList<String>();
+    ArrayList<String> scanItemID = new ArrayList<String>();
 
     static int index = 0;
 
+    static int index2 = 0;
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -476,6 +480,7 @@ public class HelloController implements Initializable{
         {
             if(username.getText().equals(loginUsers.get(i)) && password.getText().equals(loginPasswords.get(i)))
             {
+                index2 = i;
                 wrongLogin.setText("Login Successful");
                 Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -495,7 +500,40 @@ public class HelloController implements Initializable{
             }
         }
     }
-
+    public void setScanComponentsAway()
+    {
+        scanEmployeeIDLabel.setVisible(false);
+        scanEmployeeIDText.setVisible(false);
+        scanClearanceLabel.setVisible(false);
+        scanClearanceText.setVisible(false);
+        scanTypeLabel.setVisible(false);
+        scanTypeText.setVisible(false);
+        scanLocationLabel.setVisible(false);
+        scanLocationText.setVisible(false);
+        scanDescriptionLabel.setVisible(false);
+        scanDescriptionText.setVisible(false);
+        scanUpdate.setVisible(false);
+        scanDelete.setVisible(false);
+        scanCheckBox.setVisible(false);
+        scanChangeBarcodeID.setVisible(false);
+    }
+    public void showScanComponents()
+    {
+        scanEmployeeIDLabel.setVisible(true);
+        scanEmployeeIDText.setVisible(true);
+        scanClearanceLabel.setVisible(true);
+        scanClearanceText.setVisible(true);
+        scanTypeLabel.setVisible(true);
+        scanTypeText.setVisible(true);
+        scanLocationLabel.setVisible(true);
+        scanLocationText.setVisible(true);
+        scanDescriptionLabel.setVisible(true);
+        scanDescriptionText.setVisible(true);
+        scanUpdate.setVisible(true);
+        scanDelete.setVisible(true);
+        scanCheckBox.setVisible(true);
+        scanChangeBarcodeID.setVisible(true);
+    }
     //Putting away anchor panes for later use
     public void setAnchorPaneAway()
     {
@@ -518,7 +556,6 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutY(1375.0);
     }
 
-
     //Switches anchor pane using button
     public void searchButton(ActionEvent event) throws IOException {
         setAnchorPane2Away();
@@ -533,6 +570,7 @@ public class HelloController implements Initializable{
         setAnchorPane4Away();
         anchorPane2.setLayoutX(0.0);
         anchorPane2.setLayoutY(0.0);
+        setScanComponentsAway();
     }
     public void createButton(ActionEvent event) throws IOException {
         setAnchorPaneAway();
@@ -551,16 +589,11 @@ public class HelloController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resource){
-
-
         //SQL Query executed in backend database
         String barcodeViewQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
-
         try{
-
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(barcodeViewQuery);
-
             while(queryOutput.next())
             {
                 String queryItemID = queryOutput.getString("item_ID");
@@ -573,7 +606,6 @@ public class HelloController implements Initializable{
                 //Populate ObservableList
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID, queryEmployeeID, queryClearance, queryType, queryLocation, queryDescription));
             }
-
 
             //Adding value to the table columns
             if(itemIDTableColumn != null)
@@ -649,34 +681,20 @@ public class HelloController implements Initializable{
                     });
                 });
             }
-
-
-
            SortedList<BarcodeSearchModel> sortedData = new SortedList<>(filteredData);
-
             //Bind sorted result with Table View
-
-
             if(barcodeTableView != null)
             {
                 sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
 
                 barcodeTableView.setItems(sortedData);
             }
-
-
-
         }
         catch(SQLException e){
             Logger.getLogger(HelloController.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
         }
     }
-
-
-
-
-
 
     //Generating barcodes using barbecue
     public static BufferedImage generateCode128BarcodeImage(String barcodeText) throws IOException, BarcodeException, OutputException {
@@ -700,22 +718,88 @@ public class HelloController implements Initializable{
 
         return new ImageView(wr).getImage();
     }
-
-
-
     //sets the imageview in the create anchorpane to the barcode
     public void generateBarcode(ActionEvent event) throws IOException, OutputException, BarcodeException {
         if(userBarcode.getText().equals("") || locationBarcode.getText().equals("") || typeBarcode.getText().equals("") || pngBarcode.getText().equals("") || !(pngBarcode.getText().contains(".png")))
         {
             barcodeWarningLabel.setText("You need to fill in all areas");
-            pngWarningLabel.setText("Make sure you add '.png' at the end? (Do not include the ' ')");
+        }
+        else if(!(pngBarcode.getText().contains(".png")))
+        {
+            barcodeWarningLabel.setText("Make sure you add '.png' at the end. DO not include ' '");
+        }
+        else if(!(clearanceBarcode.getText().equals("0")) || !(clearanceBarcode.getText().equals("1")))
+        {
+            barcodeWarningLabel.setText("Clearance must be either 0 or 1");
         }
         else {
             barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
+            String createBarcodeID = barcodeID;
+            String createEmployeeID = loginUsers.get(index2);
+            int createClearance = Integer.parseInt(clearanceBarcode.getText());
+            String createType = typeBarcode.getText();
+            String createLocation = locationBarcode.getText();
+            String createDescription = descriptionBarcode.getText();
+            String insertQuery = "INSERT INTO item_log_history(item_ID, employee_ID, clearance, type, location, description) VALUES (?,?,?,?,?,?)";
+            try
+            {
+                pst = connectDB.prepareStatement(insertQuery);
+                pst.setString(1, createBarcodeID);
+                pst.setString(2, createEmployeeID);
+                pst.setInt( 3, createClearance);
+                pst.setString(4, createType);
+                pst.setString(5, createLocation);
+                pst.setString(6, createDescription);
+
+                String queryCreateBarcodeID = createBarcodeID;
+                String queryCreateEmployeeID = createEmployeeID;
+                int queryCreateClearance = createClearance;
+                String queryCreateType = createType;
+                String queryCreateLocation = createLocation;
+                String queryCreateDescription = createDescription;
+                barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryCreateBarcodeID, queryCreateEmployeeID, queryCreateClearance, queryCreateType, queryCreateLocation, queryCreateDescription));
+                barcodeTableView.setItems(barcodeSearchModelObservableList);
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
+    }
+    public void scanSubmit(ActionEvent event) throws IOException, SQLException {
+        String itemQuery = "SELECT item_ID FROM item_log_history";
+        pst = connectDB.prepareStatement(itemQuery);
+        rs = pst.executeQuery();
+        while (rs.next())
+        {
+            String scanItemOutput = rs.getString("item_ID");
+            scanItemID.add(scanItemOutput);
+        }
+        if(scanBarcodeIDText.getText().equals("") || scanBarcodeIDText == null)
+        {
+            scanWarningLabel.setText("You must type in the barcode ID");
+        }
+        else if(!(scanItemID.contains(scanBarcodeIDText.getText())))
+        {
+            scanWarningLabel.setText("Barcode ID not found");
+        }
+        else
+        {
+            showScanComponents();
+        }
+    }
+    public void changeBarcodeID(ActionEvent event) throws IOException
+    {
+        scanEmployeeIDText.setText("");
+        scanClearanceText.setText("");
+        scanTypeText.setText("");
+        scanLocationText.setText("");
+        scanDescriptionText.setText("");
+        scanCheckBox.setSelected(false);
+        setScanComponentsAway();
     }
     public void delete(ActionEvent event) throws IOException, SQLException
     {
