@@ -731,11 +731,8 @@ public class HelloController implements Initializable{
         {
             barcodeWarningLabel.setText("Make sure you add '.png' at the end. DO not include ' '");
         }
-        else if(!(clearanceBarcode.getText().equals("0")) || !(clearanceBarcode.getText().equals("1")))
+        else if(clearanceBarcode.getText().equals("0") || clearanceBarcode.getText().equals("1"))
         {
-            barcodeWarningLabel.setText("Clearance must be either 0 or 1");
-        }
-        else {
             barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
@@ -771,6 +768,10 @@ public class HelloController implements Initializable{
             {
                 e.printStackTrace();
             }
+        }
+        else
+        {
+            barcodeWarningLabel.setText("Clearance must be either 0 or 1");
         }
     }
     public void scanSubmit(ActionEvent event) throws IOException, SQLException {
