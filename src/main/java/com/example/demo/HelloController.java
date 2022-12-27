@@ -208,7 +208,41 @@ public class HelloController implements Initializable{
     @FXML
     private Button RAFinalPagePreviousPageButton;
     @FXML
-    private Label dateTimeLabel;
+    private Label dateTimeLabelLabel;
+    @FXML
+    private Label scanBarcodeIDLabel;
+    @FXML
+    private Label scanEmployeeIDLabel;
+    @FXML
+    private Label scanClearanceLabel;
+    @FXML
+    private Label scanTypeLabel;
+    @FXML
+    private Label scanLocationLabel;
+    @FXML
+    private Label scanDescriptionLabel;
+    @FXML
+    private TextField scanBarcodeIDText;
+    @FXML
+    private TextField scanEmployeeIDText;
+    @FXML
+    private TextField scanClearanceText;
+    @FXML
+    private TextField scanTypeText;
+    @FXML
+    private TextField scanLocationText;
+    @FXML
+    private TextField scanDescriptionText;
+    @FXML
+    private Button scanBarcodeIDSubmitButton;
+    @FXML
+    private Button scanUpdate;
+    @FXML
+    private Button scanDelete;
+    @FXML
+    private CheckBox scanCheckBox;
+    @FXML
+    private Label scanWarningLabel;
     ArrayList<String> loginUsers = new ArrayList<String>();
     ArrayList<String> loginPasswords = new ArrayList<String>();
 
