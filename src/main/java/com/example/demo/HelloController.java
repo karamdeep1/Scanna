@@ -728,17 +728,13 @@ public class HelloController implements Initializable{
         {
             barcodeWarningLabel.setText("Make sure you add '.png' at the end. DO not include ' '");
         }
-        else if(!(clearanceBarcode.getText().equals("0")) || !(clearanceBarcode.getText().equals("1")))
-        {
-            barcodeWarningLabel.setText("Clearance must be either 0 or 1");
-        }
-        else {
+        else if(clearanceBarcode.getText().equals("0") || clearanceBarcode.getText().equals("1")){
             barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
             String createBarcodeID = barcodeID;
-            String createEmployeeID = loginUsers.get(index2);
+            String createEmployeeID = userBarcode.getText();
             int createClearance = Integer.parseInt(clearanceBarcode.getText());
             String createType = typeBarcode.getText();
             String createLocation = locationBarcode.getText();
@@ -762,11 +758,16 @@ public class HelloController implements Initializable{
                 String queryCreateDescription = createDescription;
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryCreateBarcodeID, queryCreateEmployeeID, queryCreateClearance, queryCreateType, queryCreateLocation, queryCreateDescription));
                 barcodeTableView.setItems(barcodeSearchModelObservableList);
+                barcodeWarningLabel.setText("");
             }
             catch(Exception e)
             {
                 e.printStackTrace();
             }
+        }
+        else
+        {
+            barcodeWarningLabel.setText("Clearance must be either 0 or 1");
         }
     }
     public void scanSubmit(ActionEvent event) throws IOException, SQLException {
