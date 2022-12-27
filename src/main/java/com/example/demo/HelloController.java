@@ -587,6 +587,59 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutY(0.0);
     }
 
+    public void searchList()
+    {
+        FilteredList<BarcodeSearchModel> filteredData = new FilteredList<>(barcodeSearchModelObservableList, b -> true);
+        if(searchBar != null)
+        {
+            searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(barcodeSearchModel -> {
+
+                    if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                        return true;
+                    }
+                    String searchKeyword = newValue.toLowerCase();
+
+                    if(barcodeSearchModel.getItem_ID().toLowerCase().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Item ID
+                    }
+                    else if(barcodeSearchModel.getEmployee_ID().toLowerCase().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Employee ID
+                    }
+                    else if(barcodeSearchModel.getClearance().toString().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Clearance
+                    }
+                    else if(barcodeSearchModel.getType().toLowerCase().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Type
+                    }
+                    else if(barcodeSearchModel.getLocation().toLowerCase().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Location
+                    }
+                    else if(barcodeSearchModel.getDescription().toLowerCase().indexOf(searchKeyword) > -1)
+                    {
+                        return true; //Means we found a match in Description
+                    }
+                    else
+                    {
+                        return false; //Means no match found
+                    }
+                });
+            });
+        }
+        SortedList<BarcodeSearchModel> sortedData = new SortedList<>(filteredData);
+        //Bind sorted result with Table View
+        if(barcodeTableView != null)
+        {
+            sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
+
+            barcodeTableView.setItems(sortedData);
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resource){
         //SQL Query executed in backend database
@@ -639,56 +692,7 @@ public class HelloController implements Initializable{
 
             //Intial filtered list
 
-            FilteredList<BarcodeSearchModel> filteredData = new FilteredList<>(barcodeSearchModelObservableList, b -> true);
-            if(searchBar != null)
-            {
-                searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredData.setPredicate(barcodeSearchModel -> {
-
-                        if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
-                            return true;
-                        }
-                        String searchKeyword = newValue.toLowerCase();
-
-                        if(barcodeSearchModel.getItem_ID().toLowerCase().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Item ID
-                        }
-                        else if(barcodeSearchModel.getEmployee_ID().toLowerCase().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Employee ID
-                        }
-                        else if(barcodeSearchModel.getClearance().toString().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Clearance
-                        }
-                        else if(barcodeSearchModel.getType().toLowerCase().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Type
-                        }
-                        else if(barcodeSearchModel.getLocation().toLowerCase().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Location
-                        }
-                        else if(barcodeSearchModel.getDescription().toLowerCase().indexOf(searchKeyword) > -1)
-                        {
-                            return true; //Means we found a match in Description
-                        }
-                        else
-                        {
-                            return false; //Means no match found
-                        }
-                    });
-                });
-            }
-           SortedList<BarcodeSearchModel> sortedData = new SortedList<>(filteredData);
-            //Bind sorted result with Table View
-            if(barcodeTableView != null)
-            {
-                sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
-
-                barcodeTableView.setItems(sortedData);
-            }
+            searchList();
         }
         catch(SQLException e){
             Logger.getLogger(HelloController.class.getName()).log(Level.SEVERE, null, e);
@@ -762,6 +766,7 @@ public class HelloController implements Initializable{
                 String queryCreateDescription = createDescription;
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryCreateBarcodeID, queryCreateEmployeeID, queryCreateClearance, queryCreateType, queryCreateLocation, queryCreateDescription));
                 barcodeTableView.setItems(barcodeSearchModelObservableList);
+                searchList();
             }
             catch(Exception e)
             {
