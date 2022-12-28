@@ -857,6 +857,8 @@ public class HelloController implements Initializable{
 
                      searchList();
                      scanWarningLabel.setText("Item deleted");
+                     scanItem.clear();
+                     scanEmp.clear();
                      break;
                  }
                  else
