@@ -818,7 +818,7 @@ public class HelloController implements Initializable{
              String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + " AND " + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
              pst = connectDB.prepareStatement(deleteQuery);
              pst.execute(deleteQuery);
-             /*
+             barcodeSearchModelObservableList.clear();
              String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
              Statement s = connectDB.createStatement();
              rs = s.executeQuery(barcodeViewQuery2);
@@ -836,8 +836,8 @@ public class HelloController implements Initializable{
              }
              barcodeTableView.setItems(barcodeSearchModelObservableList);
 
-              */
              searchList();
+             scanWarningLabel.setText("Item deleted");
          }
          else
          {
