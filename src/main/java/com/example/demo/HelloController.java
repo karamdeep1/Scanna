@@ -809,7 +809,33 @@ public class HelloController implements Initializable{
     }
     public void delete(ActionEvent event) throws IOException, SQLException
     {
+         if(scanEmployeeIDText.getText().equals("") || scanClearanceText.getText().equals("") || scanTypeText.getText().equals("") || scanLocationText.getText().equals("") || scanDescriptionText.getText().equals("") || scanEmployeeIDText == null || scanClearanceText == null || scanTypeText == null || scanLocationText == null || scanDescriptionText == null)
+         {
+             scanWarningLabel.setText("All fields must be filled");
+         }
+         else
+         {
+             String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + "," + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
+             pst = connectDB.prepareStatement(deleteQuery);
+             pst.execute(deleteQuery);
+             String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
+             Statement s = connectDB.createStatement();
+             rs = s.executeQuery(barcodeViewQuery2);
+             while(rs.next())
+             {
+                 String queryItemID2 = rs.getString("item_ID");
+                 String queryEmployeeID2 = rs.getString("employee_ID");
+                 Integer queryClearance2 = rs.getInt("clearance");
+                 String queryType2 = rs.getString("type");
+                 String queryLocation2 = rs.getString("Location");
+                 String queryDescription2 = rs.getString("description");
 
+                 //Populate ObservableList
+                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID2, queryEmployeeID2, queryClearance2, queryType2, queryLocation2, queryDescription2));
+             }
+             barcodeTableView.setItems(barcodeSearchModelObservableList);
+             searchList();
+         }
     }
 
     public void update(ActionEvent event) throws IOException, SQLException
