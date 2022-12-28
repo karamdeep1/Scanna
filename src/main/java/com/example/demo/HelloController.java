@@ -252,6 +252,7 @@ public class HelloController implements Initializable{
     static int index = 0;
 
     static int index2 = 0;
+    static int index3 = 0;
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -260,6 +261,8 @@ public class HelloController implements Initializable{
     ArrayList<String> emp_id = new ArrayList<String>();
     ArrayList<String> SQ = new ArrayList<String>();
     ArrayList<String> SQA = new ArrayList<String>();
+    ArrayList<String> scanItem = new ArrayList<String>();
+    ArrayList<String> scanEmp = new ArrayList<String>();
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
 
     userClass user1 = new userClass(true,"user","password");
@@ -816,31 +819,51 @@ public class HelloController implements Initializable{
          }
          else if(scanCheckBox.isSelected())
          {
-
-
-             String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + " AND " + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
-             pst = connectDB.prepareStatement(deleteQuery);
-             pst.execute(deleteQuery);
-             barcodeSearchModelObservableList.clear();
-             String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
-             Statement s = connectDB.createStatement();
-             rs = s.executeQuery(barcodeViewQuery2);
+             String selectQuery = "SELECT item_ID, employee_ID FROM item_log_history";
+             pst = connectDB.prepareStatement(selectQuery);
+             rs = pst.executeQuery();
              while(rs.next())
              {
-                 String queryItemID2 = rs.getString("item_ID");
-                 String queryEmployeeID2 = rs.getString("employee_ID");
-                 Integer queryClearance2 = rs.getInt("clearance");
-                 String queryType2 = rs.getString("type");
-                 String queryLocation2 = rs.getString("Location");
-                 String queryDescription2 = rs.getString("description");
-
-                 //Populate ObservableList
-                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID2, queryEmployeeID2, queryClearance2, queryType2, queryLocation2, queryDescription2));
+                 String scanItemQuery = rs.getString("item_ID");
+                 scanItem.add(scanItemQuery);
+                 String scanEmpQuery = rs.getString("employee_ID");
+                 scanEmp.add(scanEmpQuery);
              }
-             barcodeTableView.setItems(barcodeSearchModelObservableList);
+             for(int i = 0; i < scanItem.size(); i++)
+             {
+                 if(scanBarcodeIDText.getText().equals(scanItem.get(i)) && scanEmployeeIDText.getText().equals(scanEmp.get(i)))
+                 {
+                     index = i;
+                     String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanItem.get(index3) + "'" + " AND " + "employee_ID = '" + scanEmp.get(index3) + "'";
+                     pst = connectDB.prepareStatement(deleteQuery);
+                     pst.execute(deleteQuery);
+                     barcodeSearchModelObservableList.clear();
+                     String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
+                     Statement s = connectDB.createStatement();
+                     rs = s.executeQuery(barcodeViewQuery2);
+                     while(rs.next())
+                     {
+                         String queryItemID2 = rs.getString("item_ID");
+                         String queryEmployeeID2 = rs.getString("employee_ID");
+                         Integer queryClearance2 = rs.getInt("clearance");
+                         String queryType2 = rs.getString("type");
+                         String queryLocation2 = rs.getString("Location");
+                         String queryDescription2 = rs.getString("description");
 
-             searchList();
-             scanWarningLabel.setText("Item deleted");
+                         //Populate ObservableList
+                         barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID2, queryEmployeeID2, queryClearance2, queryType2, queryLocation2, queryDescription2));
+                     }
+                     barcodeTableView.setItems(barcodeSearchModelObservableList);
+
+                     searchList();
+                     scanWarningLabel.setText("Item deleted");
+                     break;
+                 }
+                 else
+                 {
+                     scanWarningLabel.setText("Wrong Employee ID or Barcode ID");
+                 }
+             }
          }
          else
          {
