@@ -910,7 +910,6 @@ public class HelloController implements Initializable{
             {
                 if (scanBarcodeIDText.getText().equals(scanItem.get(i))) {
                     String updateQuery = "UPDATE item_log_history SET employee_ID = '" + scanEmployeeIDText.getText() + "'" + "," + "clearance = " + scanClearanceText.getText() + "," + "type = '" + scanTypeText.getText() + "'" + "," + "Location = '" + scanLocationText.getText() + "'" + "," + "description = '" + scanDescriptionText.getText() + "'" + "WHERE item_ID = '" + scanItem.get(i) + "'";
-                    System.out.println(updateQuery);
                     pst = connectDB.prepareStatement(updateQuery);
                     pst.execute(updateQuery);
                     barcodeSearchModelObservableList.clear();
@@ -934,7 +933,6 @@ public class HelloController implements Initializable{
                     searchList();
                     scanWarningLabel.setText("Item updated");
                     scanItem.clear();
-                    scanEmp.clear();
                     break;
                 }
             }
