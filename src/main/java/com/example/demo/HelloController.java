@@ -813,11 +813,12 @@ public class HelloController implements Initializable{
          {
              scanWarningLabel.setText("All fields must be filled");
          }
-         else
+         else if(scanCheckBox.isSelected())
          {
-             String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + "," + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
+             String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + " AND " + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
              pst = connectDB.prepareStatement(deleteQuery);
              pst.execute(deleteQuery);
+             /*
              String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
              Statement s = connectDB.createStatement();
              rs = s.executeQuery(barcodeViewQuery2);
@@ -834,7 +835,13 @@ public class HelloController implements Initializable{
                  barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID2, queryEmployeeID2, queryClearance2, queryType2, queryLocation2, queryDescription2));
              }
              barcodeTableView.setItems(barcodeSearchModelObservableList);
+
+              */
              searchList();
+         }
+         else
+         {
+             scanWarningLabel.setText("check the checkbox to confirm delete");
          }
     }
 
