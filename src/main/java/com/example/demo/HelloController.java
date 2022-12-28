@@ -898,7 +898,7 @@ public class HelloController implements Initializable{
         }
         else
         {
-            String selectUpdateQuery = "SELECT employee_ID, clearance, type, Location, description";
+            String selectUpdateQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history";
             pst = connectDB.prepareStatement(selectUpdateQuery);
             rs = pst.executeQuery();
             while(rs.next())
