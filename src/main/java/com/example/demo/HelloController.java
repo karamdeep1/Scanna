@@ -738,7 +738,7 @@ public class HelloController implements Initializable{
             barcodeWarningLabel.setText("Barcode Generated");
             ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
             String createBarcodeID = barcodeID;
-            String createEmployeeID = loginUsers.get(index2);
+            String createEmployeeID = userBarcode.getText();
             int createClearance = Integer.parseInt(clearanceBarcode.getText());
             String createType = typeBarcode.getText();
             String createLocation = locationBarcode.getText();
@@ -753,6 +753,7 @@ public class HelloController implements Initializable{
                 pst.setString(4, createType);
                 pst.setString(5, createLocation);
                 pst.setString(6, createDescription);
+                pst.execute();
 
                 String queryCreateBarcodeID = createBarcodeID;
                 String queryCreateEmployeeID = createEmployeeID;
