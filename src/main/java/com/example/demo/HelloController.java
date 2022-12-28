@@ -795,6 +795,7 @@ public class HelloController implements Initializable{
         else
         {
             showScanComponents();
+            scanItemID.clear();
         }
     }
     public void changeBarcodeID(ActionEvent event) throws IOException
@@ -815,6 +816,8 @@ public class HelloController implements Initializable{
          }
          else if(scanCheckBox.isSelected())
          {
+
+
              String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanBarcodeIDText.getText() + "'" + " AND " + "employee_ID = '" + scanEmployeeIDText.getText() + "'";
              pst = connectDB.prepareStatement(deleteQuery);
              pst.execute(deleteQuery);
