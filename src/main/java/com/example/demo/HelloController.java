@@ -573,6 +573,12 @@ public class HelloController implements Initializable{
         setAnchorPane4Away();
         anchorPane2.setLayoutX(0.0);
         anchorPane2.setLayoutY(0.0);
+        scanEmployeeIDText.setText("");
+        scanClearanceText.setText("");
+        scanTypeText.setText("");
+        scanLocationText.setText("");
+        scanDescriptionText.setText("");
+        scanCheckBox.setSelected(false);
         setScanComponentsAway();
     }
     public void createButton(ActionEvent event) throws IOException {
@@ -581,6 +587,13 @@ public class HelloController implements Initializable{
         setAnchorPane4Away();
         anchorPane3.setLayoutX(0.0);
         anchorPane3.setLayoutY(0.0);
+        userBarcode.setText("");
+        clearanceBarcode.setText("");
+        typeBarcode.setText("");
+        locationBarcode.setText("");
+        descriptionBarcode.setText("");
+        pngBarcode.setText("");
+        barcodeImage.setImage(null);
     }
     public void settingsButton(ActionEvent event) throws IOException {
         setAnchorPaneAway();
