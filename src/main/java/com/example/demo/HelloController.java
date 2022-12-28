@@ -248,11 +248,10 @@ public class HelloController implements Initializable{
     ArrayList<String> loginUsers = new ArrayList<String>();
     ArrayList<String> loginPasswords = new ArrayList<String>();
     ArrayList<String> scanItemID = new ArrayList<String>();
-
     static int index = 0;
-
     static int index2 = 0;
     static int index3 = 0;
+    static String scanBarcodeID = "";
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -264,9 +263,7 @@ public class HelloController implements Initializable{
     ArrayList<String> scanItem = new ArrayList<String>();
     ArrayList<String> scanEmp = new ArrayList<String>();
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
-
     userClass user1 = new userClass(true,"user","password");
-
     public void switchToForgotPassword(ActionEvent event) throws IOException
     {
         original.setLayoutY(1864);
@@ -391,6 +388,7 @@ public class HelloController implements Initializable{
             {
                 FPUserLabel.setVisible(false);
                 tf = false;
+                usernames.clear();
                 break;
             }
         }
@@ -425,6 +423,9 @@ public class HelloController implements Initializable{
                 }
             }
             FPSQLabel.setText(SQ.get(index));
+            emp_id.clear();
+            SQ.clear();
+            SQA.clear();
         }
     }
     public void FPSASubmitButton(ActionEvent event) throws IOException {
@@ -491,6 +492,8 @@ public class HelloController implements Initializable{
                 stage.setTitle("Scanna");
                 stage.setScene(scene);
                 stage.show();
+                loginUsers.clear();
+                loginPasswords.clear();
                 break;
             }
             else if(username.getText().isEmpty() && password.getText().isEmpty())
@@ -810,6 +813,7 @@ public class HelloController implements Initializable{
         }
         else
         {
+            scanBarcodeID = scanBarcodeIDText.getText();
             showScanComponents();
             scanItemID.clear();
         }
@@ -832,8 +836,8 @@ public class HelloController implements Initializable{
          }
          else if(scanCheckBox.isSelected())
          {
-             String selectQuery = "SELECT item_ID, employee_ID FROM item_log_history";
-             pst = connectDB.prepareStatement(selectQuery);
+             String selectDeleteQuery = "SELECT item_ID, employee_ID FROM item_log_history";
+             pst = connectDB.prepareStatement(selectDeleteQuery);
              rs = pst.executeQuery();
              while(rs.next())
              {
@@ -846,7 +850,7 @@ public class HelloController implements Initializable{
              {
                  if(scanBarcodeIDText.getText().equals(scanItem.get(i)) && scanEmployeeIDText.getText().equals(scanEmp.get(i)))
                  {
-                     index = i;
+                     index3 = i;
                      String deleteQuery = "DELETE FROM item_log_history WHERE item_ID = '" + scanItem.get(index3) + "'" + " AND " + "employee_ID = '" + scanEmp.get(index3) + "'";
                      pst = connectDB.prepareStatement(deleteQuery);
                      pst.execute(deleteQuery);
@@ -888,6 +892,54 @@ public class HelloController implements Initializable{
 
     public void update(ActionEvent event) throws IOException, SQLException
     {
+        if(scanEmployeeIDText.getText().equals("") || scanClearanceText.getText().equals("") || scanTypeText.getText().equals("") || scanLocationText.getText().equals("") || scanDescriptionText.getText().equals("") || scanEmployeeIDText == null || scanClearanceText == null || scanTypeText == null || scanLocationText == null || scanDescriptionText == null)
+        {
+            scanWarningLabel.setText("All fields must be filled");
+        }
+        else
+        {
+            String selectUpdateQuery = "SELECT employee_ID, clearance, type, Location, description";
+            pst = connectDB.prepareStatement(selectUpdateQuery);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                String scanItemQuery = rs.getString("item_ID");
+                scanItem.add(scanItemQuery);
+                String scanEmpQuery = rs.getString("employee_ID");
+                scanEmp.add(scanEmpQuery);
+            }
+            for(int i = 0; i < scanItem.size(); i++)
+            {
+                if (scanBarcodeIDText.getText().equals(scanItem.get(i)) && scanEmployeeIDText.getText().equals(scanEmp.get(i))) {
+                    index3 = i;
+                    String updateQuery = "UPDATE item_log_history SET employee_ID = '" + scanEmp.get(index3) + "'" + "," + "clearance = '" + scanClearanceText.getText() + "'" + "," + "type = '" + scanTypeText.getText() + "'" + "," + "Location = '" + scanLocationText.getText() + "'" + "," + "description = '" + scanDescriptionText + "'" + "WHERE employee_ID = '" + scanEmp.get(index3);
+                    pst = connectDB.prepareStatement(updateQuery);
+                    pst.execute(updateQuery);
+                    barcodeSearchModelObservableList.clear();
+                    String barcodeViewQuery2 = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
+                    Statement s = connectDB.createStatement();
+                    rs = s.executeQuery(barcodeViewQuery2);
+                    while(rs.next())
+                    {
+                        String queryItemID3 = rs.getString("item_ID");
+                        String queryEmployeeID3 = rs.getString("employee_ID");
+                        Integer queryClearance3 = rs.getInt("clearance");
+                        String queryType3 = rs.getString("type");
+                        String queryLocation3 = rs.getString("Location");
+                        String queryDescription3 = rs.getString("description");
 
+                        //Populate ObservableList
+                        barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID3, queryEmployeeID3, queryClearance3, queryType3, queryLocation3, queryDescription3));
+                    }
+                    barcodeTableView.setItems(barcodeSearchModelObservableList);
+
+                    searchList();
+                    scanWarningLabel.setText("Item updated");
+                    scanItem.clear();
+                    scanEmp.clear();
+                    break;
+                }
+            }
+        }
     }
 }
