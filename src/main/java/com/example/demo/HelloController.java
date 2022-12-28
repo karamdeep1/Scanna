@@ -905,14 +905,12 @@ public class HelloController implements Initializable{
             {
                 String scanItemQuery = rs.getString("item_ID");
                 scanItem.add(scanItemQuery);
-                String scanEmpQuery = rs.getString("employee_ID");
-                scanEmp.add(scanEmpQuery);
             }
             for(int i = 0; i < scanItem.size(); i++)
             {
-                if (scanBarcodeIDText.getText().equals(scanItem.get(i)) && scanEmployeeIDText.getText().contains(scanEmp.get(i))) {
-                    index3 = i;
-                    String updateQuery = "UPDATE item_log_history SET employee_ID = '" + scanEmp.get(index3) + "'" + "," + "clearance = '" + scanClearanceText.getText() + "'" + "," + "type = '" + scanTypeText.getText() + "'" + "," + "Location = '" + scanLocationText.getText() + "'" + "," + "description = '" + scanDescriptionText + "'" + "WHERE employee_ID = '" + scanEmp.get(index3);
+                if (scanBarcodeIDText.getText().equals(scanItem.get(i))) {
+                    String updateQuery = "UPDATE item_log_history SET employee_ID = '" + scanEmployeeIDText.getText() + "'" + "," + "clearance = " + scanClearanceText.getText() + "," + "type = '" + scanTypeText.getText() + "'" + "," + "Location = '" + scanLocationText.getText() + "'" + "," + "description = '" + scanDescriptionText.getText() + "'" + "WHERE item_ID = '" + scanItem.get(i) + "'";
+                    System.out.println(updateQuery);
                     pst = connectDB.prepareStatement(updateQuery);
                     pst.execute(updateQuery);
                     barcodeSearchModelObservableList.clear();
