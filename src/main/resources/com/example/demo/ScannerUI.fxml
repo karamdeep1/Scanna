@@ -121,12 +121,12 @@
                                     <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="settingsUsername" layoutX="131.0" layoutY="68.0" prefHeight="40.0" prefWidth="145.0" text="username appears here" textFill="#00b2f0">
+                              <Label fx:id="settingsUsername" layoutX="131.0" layoutY="68.0" prefHeight="40.0" prefWidth="145.0" textFill="#00b2f0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="settingsClearance" layoutX="131.0" layoutY="117.0" prefHeight="40.0" prefWidth="145.0" text="clearance appears here" textFill="#00b2f0">
+                              <Label fx:id="settingsClearance" layoutX="131.0" layoutY="117.0" prefHeight="40.0" prefWidth="145.0" textFill="#00b2f0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
