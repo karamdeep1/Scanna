@@ -857,7 +857,6 @@ public class HelloController implements Initializable{
                 }
             }
         }
-
         return new ImageView(wr).getImage();
     }
 
