@@ -245,6 +245,32 @@ public class HelloController implements Initializable{
     private Label scanWarningLabel;
     @FXML
     private Button scanChangeBarcodeID;
+    @FXML
+    private Label settingsUsername;
+    @FXML
+    private Label settingsClearance;
+    @FXML
+    private TableView<SettingsSearchModel> sAccountItems;
+    @FXML
+    private TableColumn<SettingsSearchModel, String> sBarcodeID;
+    @FXML
+    private TableColumn<SettingsSearchModel, Integer> sClearance;
+    @FXML
+    private TableColumn<SettingsSearchModel, String> sType;
+    @FXML
+    private TableColumn<SettingsSearchModel, String> sLocation;
+    @FXML
+    private TableColumn<SettingsSearchModel, String> sDescription;
+    @FXML
+    private TableView<settingsAdminSearchModel> saEmployeeInformation;
+    @FXML
+    private TableColumn<settingsAdminSearchModel, String> saEmployeeID;
+    @FXML
+    private TableColumn<settingsAdminSearchModel, Integer> saClearance;
+    @FXML
+    private TableColumn<settingsAdminSearchModel, String> saEmail;
+    @FXML
+    private TableColumn<settingsAdminSearchModel, String> saName;
     ArrayList<String> loginUsers = new ArrayList<String>();
     ArrayList<String> loginPasswords = new ArrayList<String>();
     ArrayList<String> scanItemID = new ArrayList<String>();
@@ -252,6 +278,7 @@ public class HelloController implements Initializable{
     static int index2 = 0;
     static int index3 = 0;
     static String scanBarcodeID = "";
+    static String settingsUser = "";
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -263,6 +290,8 @@ public class HelloController implements Initializable{
     ArrayList<String> scanItem = new ArrayList<String>();
     ArrayList<String> scanEmp = new ArrayList<String>();
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
+    ObservableList<SettingsSearchModel> settingsSearchModelObservableList = FXCollections.observableArrayList();
+    ObservableList<settingsAdminSearchModel> settingsAdminSearchModelObservableList = FXCollections.observableArrayList();
     userClass user1 = new userClass(true,"user","password");
     public void switchToForgotPassword(ActionEvent event) throws IOException
     {
@@ -484,6 +513,7 @@ public class HelloController implements Initializable{
         {
             if(username.getText().equals(loginUsers.get(i)) && password.getText().equals(loginPasswords.get(i)))
             {
+                settingsUser = loginUsers.get(i);
                 index2 = i;
                 wrongLogin.setText("Login Successful");
                 Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
@@ -662,6 +692,8 @@ public class HelloController implements Initializable{
     public void initialize(URL url, ResourceBundle resource){
         //SQL Query executed in backend database
         String barcodeViewQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
+        String settingsAccountInfo = "SELECT item_ID, clearance, type, Location, description FROM item_log_history WHERE employee_ID = '" + settingsUser + "'";
+        String settingsAdminEmpInfo = "SELECT Employee_ID, Clearance, Email, FirstName, LastName FROM employee";
         try{
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(barcodeViewQuery);
@@ -710,7 +742,71 @@ public class HelloController implements Initializable{
 
             //Intial filtered list
             searchList();
+            ResultSet settingsEmpOutput = statement.executeQuery(settingsAccountInfo);
+            while(settingsEmpOutput.next())
+            {
+                String seoBarcodeID = settingsEmpOutput.getString("item_ID");
+                Integer seoClearance = settingsEmpOutput.getInt("clearance");
+                String seoType = settingsEmpOutput.getString("type");
+                String seoLocation = settingsEmpOutput.getString("Location");
+                String seoDescription = settingsEmpOutput.getString("Description");
+                settingsSearchModelObservableList.add(new SettingsSearchModel(seoBarcodeID, seoClearance, seoType, seoLocation, seoDescription));
+            }
 
+            if(sBarcodeID != null)
+            {
+                sBarcodeID.setCellValueFactory(new PropertyValueFactory<SettingsSearchModel, String>("settingsBarcodeID"));
+            }
+            if(sClearance != null)
+            {
+                sClearance.setCellValueFactory(new PropertyValueFactory<SettingsSearchModel, Integer>("settingsClearance"));
+            }
+            if(sType != null)
+            {
+                sType.setCellValueFactory(new PropertyValueFactory<SettingsSearchModel, String>("settingsType"));
+            }
+            if(sLocation != null)
+            {
+                sLocation.setCellValueFactory(new PropertyValueFactory<SettingsSearchModel, String>("settingsLocation"));
+            }
+            if(sDescription != null)
+            {
+                sDescription.setCellValueFactory(new PropertyValueFactory<SettingsSearchModel, String>("settingsDescription"));
+            }
+            if(sAccountItems != null)
+            {
+                sAccountItems.setItems(settingsSearchModelObservableList);
+            }
+
+            ResultSet settingsAdminEmpOutput = statement.executeQuery(settingsAdminEmpInfo);
+            while(settingsAdminEmpOutput.next())
+            {
+                String saeoEmployeeID = settingsAdminEmpOutput.getString("Employee_ID");
+                Integer saeoClearance = settingsAdminEmpOutput.getInt("Clearance");
+                String saeoEmail = settingsAdminEmpOutput.getString("Email");
+                String saeoName = settingsAdminEmpOutput.getString("FirstName") + " " + settingsAdminEmpOutput.getString("LastName");
+                settingsAdminSearchModelObservableList.add(new settingsAdminSearchModel(saeoEmployeeID, saeoClearance, saeoEmail, saeoName));
+            }
+            if(saEmployeeID != null)
+            {
+                saEmployeeID.setCellValueFactory(new PropertyValueFactory<settingsAdminSearchModel, String>("settingsAdminEmployeeID"));
+            }
+            if(saClearance != null)
+            {
+                saClearance.setCellValueFactory(new PropertyValueFactory<settingsAdminSearchModel, Integer>("settingsAdminClearance"));
+            }
+            if(saEmail != null)
+            {
+                saEmail.setCellValueFactory(new PropertyValueFactory<settingsAdminSearchModel, String>("settingsAdminEmail"));
+            }
+            if(saName != null)
+            {
+                saName.setCellValueFactory(new PropertyValueFactory<settingsAdminSearchModel, String>("settingsAdminName"));
+            }
+            if(saEmployeeInformation != null)
+            {
+                saEmployeeInformation.setItems(settingsAdminSearchModelObservableList);
+            }
         }
         catch(SQLException e){
             Logger.getLogger(HelloController.class.getName()).log(Level.SEVERE, null, e);
