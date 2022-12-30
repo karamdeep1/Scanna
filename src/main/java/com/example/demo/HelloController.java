@@ -375,11 +375,11 @@ public class HelloController implements Initializable{
             String raquery = "";
             if(!(RAEmail.getText().equals("")) || RAEmail != null)
             {
-                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "'" + RAEmail.getText() + "'" + "," + "'" + RAPassword.getText() + "'" + "," + "NULL" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
+                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "'" + RAEmail.getText() + "'" + "," + "'" + RAPassword.getText() + "'" + "," + "0" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
             }
             else
             {
-                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "NULL" + "," + "'" + RAPassword.getText() + "'" + "," + "NULL" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
+                raquery = "INSERT INTO employee VALUES(" +  "'" + RAUser.getText() + "'" +"," + "'" + RAFirstName.getText() + "'" + "," + "'" + RALastName.getText() + "'" + "," + "NULL" + "," + "'" + RAPassword.getText() + "'" + "," + "0" + "," + "'" + RADateOfBirth.getText() + "'" + "," + "'" + RASocialSecurityNumber.getText() + "'" + "," + "NULL" + ")";
             }
             pst = connectDB.prepareStatement(raquery);
             pst.execute(raquery);
