@@ -277,12 +277,14 @@ public class HelloController implements Initializable{
     private TableColumn<settingsAdminSearchModel, String> saName;
     ArrayList<String> loginUsers = new ArrayList<String>();
     ArrayList<String> loginPasswords = new ArrayList<String>();
+    ArrayList<Integer> loginClearance = new ArrayList<Integer>();
     ArrayList<String> scanItemID = new ArrayList<String>();
     static int index = 0;
     static int index2 = 0;
     static int index3 = 0;
     static String scanBarcodeID = "";
     static String settingsUser = "";
+    static Integer settingsClearanceNumber;
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -503,7 +505,7 @@ public class HelloController implements Initializable{
     }
 
     public void switchToScannerUI(ActionEvent event) throws IOException, SQLException {
-        String userpass = "SELECT Employee_ID, Password FROM employee";
+        String userpass = "SELECT Employee_ID, Password, Clearance FROM employee";
         Statement ls = connectDB.createStatement();
         rs = ls.executeQuery(userpass);
         while(rs.next())
@@ -512,12 +514,15 @@ public class HelloController implements Initializable{
             loginUsers.add(queryUser);
             String queryPass = rs.getString("Password");
             loginPasswords.add(queryPass);
+            Integer queryClearance = rs.getInt("Clearance");
+            loginClearance.add(queryClearance);
         }
         for(int i = 0; i < loginUsers.size(); i++)
         {
             if(username.getText().equals(loginUsers.get(i)) && password.getText().equals(loginPasswords.get(i)))
             {
                 settingsUser = loginUsers.get(i);
+                settingsClearanceNumber = loginClearance.get(i);
                 index2 = i;
                 wrongLogin.setText("Login Successful");
                 Parent root = FXMLLoader.load(getClass().getResource("ScannerUI.fxml"));
@@ -528,6 +533,7 @@ public class HelloController implements Initializable{
                 stage.show();
                 loginUsers.clear();
                 loginPasswords.clear();
+                loginClearance.clear();
                 break;
             }
             else if(username.getText().isEmpty() && password.getText().isEmpty())
@@ -638,6 +644,8 @@ public class HelloController implements Initializable{
         setAnchorPane3Away();
         anchorPane4.setLayoutX(0.0);
         anchorPane4.setLayoutY(0.0);
+        settingsUsername.setText(settingsUser);
+        settingsClearance.setText(Integer.toString(settingsClearanceNumber));
     }
     public void searchList()
     {
