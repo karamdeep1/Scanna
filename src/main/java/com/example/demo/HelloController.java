@@ -860,6 +860,29 @@ public class HelloController implements Initializable{
 
         return new ImageView(wr).getImage();
     }
+
+    public void resetSettingsTable()
+    {
+        String settingsFirstQuery = "SELECT item_ID, clearance, type, Location, description FROM item_log_history WHERE employee_ID = '" + settingsUser + "'";
+        try {
+            settingsSearchModelObservableList.clear();
+            pst = connectDB.prepareStatement(settingsFirstQuery);
+            rs = pst.executeQuery(settingsFirstQuery);
+            while (rs.next()) {
+                String seoBarcodeID = rs.getString("item_ID");
+                Integer seoClearance = rs.getInt("clearance");
+                String seoType = rs.getString("type");
+                String seoLocation = rs.getString("Location");
+                String seoDescription = rs.getString("Description");
+                settingsSearchModelObservableList.add(new SettingsSearchModel(seoBarcodeID, seoClearance, seoType, seoLocation, seoDescription));
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        sAccountItems.setItems(settingsSearchModelObservableList);
+    }
     //sets the imageview in the create anchorpane to the barcode
     public void generateBarcode(ActionEvent event) throws IOException, OutputException, BarcodeException {
         if(userBarcode.getText().equals("") || locationBarcode.getText().equals("") || typeBarcode.getText().equals("") || pngBarcode.getText().equals("") || !(pngBarcode.getText().contains(".png")))
@@ -883,7 +906,6 @@ public class HelloController implements Initializable{
             String createLocation = locationBarcode.getText();
             String createDescription = descriptionBarcode.getText();
             String insertQuery = "INSERT INTO item_log_history(item_ID, employee_ID, clearance, type, location, description) VALUES (?,?,?,?,?,?)";
-
             try
             {
                 pst = connectDB.prepareStatement(insertQuery);
@@ -904,7 +926,7 @@ public class HelloController implements Initializable{
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryCreateBarcodeID, queryCreateEmployeeID, queryCreateClearance, queryCreateType, queryCreateLocation, queryCreateDescription));
                 barcodeTableView.setItems(barcodeSearchModelObservableList);
                 searchList();
-
+                resetSettingsTable();
             }
             catch(Exception e)
             {
@@ -993,9 +1015,9 @@ public class HelloController implements Initializable{
                          barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID2, queryEmployeeID2, queryClearance2, queryType2, queryLocation2, queryDescription2));
                      }
                      barcodeTableView.setItems(barcodeSearchModelObservableList);
-
                      searchList();
                      scanWarningLabel.setText("Item deleted");
+                     resetSettingsTable();
                      scanItem.clear();
                      scanEmp.clear();
                      break;
@@ -1051,9 +1073,9 @@ public class HelloController implements Initializable{
                         barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID3, queryEmployeeID3, queryClearance3, queryType3, queryLocation3, queryDescription3));
                     }
                     barcodeTableView.setItems(barcodeSearchModelObservableList);
-
                     searchList();
                     scanWarningLabel.setText("Item updated");
+                    resetSettingsTable();
                     scanItem.clear();
                     break;
                 }
