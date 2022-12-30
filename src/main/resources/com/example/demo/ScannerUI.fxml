@@ -121,12 +121,12 @@
                                     <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="131.0" layoutY="68.0" prefHeight="40.0" prefWidth="145.0" text="username appears here" textFill="#00b2f0">
+                              <Label fx:id="settingsUsername" layoutX="131.0" layoutY="68.0" prefHeight="40.0" prefWidth="145.0" text="username appears here" textFill="#00b2f0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="131.0" layoutY="117.0" prefHeight="40.0" prefWidth="145.0" text="clearance appears here" textFill="#00b2f0">
+                              <Label fx:id="settingsClearance" layoutX="131.0" layoutY="117.0" prefHeight="40.0" prefWidth="145.0" text="clearance appears here" textFill="#00b2f0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -136,35 +136,35 @@
                                     <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="18.0" layoutY="195.0" prefHeight="253.0" prefWidth="406.0">
+                              <TableView fx:id="sAccountItems" layoutX="18.0" layoutY="195.0" prefHeight="253.0" prefWidth="406.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Barcode ID" />
-                                  <TableColumn prefWidth="77.0" text="Clearance" />
-                                    <TableColumn prefWidth="83.0" text="Type" />
-                                    <TableColumn prefWidth="82.0" text="Location" />
-                                    <TableColumn prefWidth="87.0" text="Description" />
+                                  <TableColumn fx:id="sBarcodeID" prefWidth="75.0" text="Barcode ID" />
+                                  <TableColumn fx:id="sClearance" prefWidth="77.0" text="Clearance" />
+                                    <TableColumn fx:id="sType" prefWidth="83.0" text="Type" />
+                                    <TableColumn fx:id="sLocation" prefWidth="82.0" text="Location" />
+                                    <TableColumn fx:id="sDescription" prefWidth="87.0" text="Description" />
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="445.0" layoutY="-1.0" prefHeight="456.0" prefWidth="306.0">
                            <children>
-                              <Text fill="#00b2f0" layoutX="28.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Information">
+                              <Text fx:id="settingsAdminInformationLabel" fill="#00b2f0" layoutX="28.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Information">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Text>
-                              <Label layoutX="48.0" layoutY="84.0" prefHeight="42.0" prefWidth="210.0" text="Employee Information:" textFill="#00b2f0">
+                              <Label fx:id="settingsAdminEmployeeLabel" layoutX="48.0" layoutY="84.0" prefHeight="42.0" prefWidth="210.0" text="Employee Information:" textFill="#00b2f0">
                                  <font>
                                     <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="5.0" layoutY="132.0" prefHeight="318.0" prefWidth="297.0">
+                              <TableView fx:id="saEmployeeInformation" layoutX="5.0" layoutY="132.0" prefHeight="318.0" prefWidth="297.0">
                                 <columns>
-                                  <TableColumn prefWidth="83.0" text="Employee ID" />
-                                  <TableColumn prefWidth="67.0" text="Clearance" />
-                                    <TableColumn prefWidth="71.0" text="Email" />
-                                    <TableColumn prefWidth="75.0" text="Name" />
+                                  <TableColumn fx:id="saEmployeeID" prefWidth="83.0" text="Employee ID" />
+                                  <TableColumn fx:id="saClearance" prefWidth="67.0" text="Clearance" />
+                                    <TableColumn fx:id="saEmail" prefWidth="71.0" text="Email" />
+                                    <TableColumn fx:id="saName" prefWidth="75.0" text="Name" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>

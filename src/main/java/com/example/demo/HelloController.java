@@ -250,6 +250,10 @@ public class HelloController implements Initializable{
     @FXML
     private Label settingsClearance;
     @FXML
+    private Label settingsAdminInformationLabel;
+    @FXML
+    private Label settingsAdminEmployeeLabel;
+    @FXML
     private TableView<SettingsSearchModel> sAccountItems;
     @FXML
     private TableColumn<SettingsSearchModel, String> sBarcodeID;
