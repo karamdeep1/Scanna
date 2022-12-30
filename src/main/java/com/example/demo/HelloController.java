@@ -646,6 +646,18 @@ public class HelloController implements Initializable{
         anchorPane4.setLayoutY(0.0);
         settingsUsername.setText(settingsUser);
         settingsClearance.setText(Integer.toString(settingsClearanceNumber));
+        if(settingsClearance.getText().equals("0"))
+        {
+            settingsAdminInformationLabel.setVisible(false);
+            settingsAdminEmployeeLabel.setVisible(false);
+            saEmployeeInformation.setVisible(false);
+        }
+        else
+        {
+            settingsAdminInformationLabel.setVisible(true);
+            settingsAdminEmployeeLabel.setVisible(true);
+            saEmployeeInformation.setVisible(true);
+        }
     }
     public void searchList()
     {
