@@ -883,6 +883,7 @@ public class HelloController implements Initializable{
             String createLocation = locationBarcode.getText();
             String createDescription = descriptionBarcode.getText();
             String insertQuery = "INSERT INTO item_log_history(item_ID, employee_ID, clearance, type, location, description) VALUES (?,?,?,?,?,?)";
+
             try
             {
                 pst = connectDB.prepareStatement(insertQuery);
@@ -903,6 +904,7 @@ public class HelloController implements Initializable{
                 barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryCreateBarcodeID, queryCreateEmployeeID, queryCreateClearance, queryCreateType, queryCreateLocation, queryCreateDescription));
                 barcodeTableView.setItems(barcodeSearchModelObservableList);
                 searchList();
+
             }
             catch(Exception e)
             {
