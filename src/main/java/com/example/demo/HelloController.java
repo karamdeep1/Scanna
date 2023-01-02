@@ -283,6 +283,7 @@ public class HelloController implements Initializable{
     ArrayList<String> loginPasswords = new ArrayList<String>();
     ArrayList<Integer> loginClearance = new ArrayList<Integer>();
     ArrayList<String> scanItemID = new ArrayList<String>();
+    ArrayList<String> listOfBarcodeIDs = new ArrayList<String>();
     static int index = 0;
     static int index2 = 0;
     static int index3 = 0;
@@ -888,15 +889,37 @@ public class HelloController implements Initializable{
         }
         sAccountItems.setItems(settingsSearchModelObservableList);
     }
+    public void getBarcodeIDs() throws SQLException {
+        String getItemIDs = "SELECT item_ID FROM item_log_history";
+        pst = connectDB.prepareStatement(getItemIDs);
+        rs = pst.executeQuery(getItemIDs);
+        while(rs.next())
+        {
+            String item_ID = rs.getString("item_ID");
+            listOfBarcodeIDs.add(item_ID);
+        }
+    }
     //sets the imageview in the create anchorpane to the barcode
-    public void generateBarcode(ActionEvent event) throws IOException, OutputException, BarcodeException {
+    public void generateBarcode(ActionEvent event) throws IOException, OutputException, BarcodeException, SQLException {
         if(userBarcode.getText().equals("") || locationBarcode.getText().equals("") || typeBarcode.getText().equals(""))
         {
             barcodeWarningLabel.setText("You need to fill in all areas");
         }
         else if(clearanceBarcode.getText().equals("0") || clearanceBarcode.getText().equals("1"))
         {
+            getBarcodeIDs();
             barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
+            for(int i = 0; i < listOfBarcodeIDs.size(); i++)
+            {
+                if(barcodeID.equals(listOfBarcodeIDs.get(i)))
+                {
+                    barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
+                }
+                else
+                {
+                    break;
+                }
+            }
             tempBarcodeID = barcodeID;
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
