@@ -135,8 +135,6 @@ public class HelloController implements Initializable{
     @FXML
     private TextField typeBarcode;
     @FXML
-    private TextField pngBarcode;
-    @FXML
     private TextField clearanceBarcode;
     @FXML
     private TextField descriptionBarcode;
@@ -644,7 +642,6 @@ public class HelloController implements Initializable{
         typeBarcode.setText("");
         locationBarcode.setText("");
         descriptionBarcode.setText("");
-        pngBarcode.setText("");
         barcodeImage.setImage(null);
     }
     public void settingsButton(ActionEvent event) throws IOException {
