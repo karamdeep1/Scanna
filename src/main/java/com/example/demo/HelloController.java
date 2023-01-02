@@ -43,6 +43,7 @@ import net.sourceforge.barbecue.output.OutputException;
 
 import javax.imageio.ImageIO;
 
+import static com.example.demo.ImportPDF.Import2PDF;
 import static java.lang.Integer.MAX_VALUE;
 
 public class HelloController implements Initializable{
@@ -140,9 +141,14 @@ public class HelloController implements Initializable{
     @FXML
     private TextField descriptionBarcode;
     private static File a = new File("firstBarcode.png");
-
     @FXML
     private Label barcodeWarningLabel;
+    @FXML
+    private Button addToStack;
+    @FXML
+    private Button fillSheet;
+    @FXML
+    private Button printStack;
     @FXML
     private Hyperlink forgotPass;
     @FXML
@@ -282,9 +288,11 @@ public class HelloController implements Initializable{
     static int index = 0;
     static int index2 = 0;
     static int index3 = 0;
+    static int timesAdded = 0;
     static String scanBarcodeID = "";
     static String settingsUser = "";
     static Integer settingsClearanceNumber;
+    static String tempBarcodeID = null;
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getDBConnection();
     PreparedStatement pst = null;
@@ -295,6 +303,7 @@ public class HelloController implements Initializable{
     ArrayList<String> SQA = new ArrayList<String>();
     ArrayList<String> scanItem = new ArrayList<String>();
     ArrayList<String> scanEmp = new ArrayList<String>();
+    String[] barcodeids = new String[30];
     ObservableList<BarcodeSearchModel> barcodeSearchModelObservableList = FXCollections.observableArrayList();
     ObservableList<SettingsSearchModel> settingsSearchModelObservableList = FXCollections.observableArrayList();
     ObservableList<settingsAdminSearchModel> settingsAdminSearchModelObservableList = FXCollections.observableArrayList();
@@ -884,20 +893,17 @@ public class HelloController implements Initializable{
     }
     //sets the imageview in the create anchorpane to the barcode
     public void generateBarcode(ActionEvent event) throws IOException, OutputException, BarcodeException {
-        if(userBarcode.getText().equals("") || locationBarcode.getText().equals("") || typeBarcode.getText().equals("") || pngBarcode.getText().equals("") || !(pngBarcode.getText().contains(".png")))
+        if(userBarcode.getText().equals("") || locationBarcode.getText().equals("") || typeBarcode.getText().equals(""))
         {
             barcodeWarningLabel.setText("You need to fill in all areas");
-        }
-        else if(!(pngBarcode.getText().contains(".png")))
-        {
-            barcodeWarningLabel.setText("Make sure you add '.png' at the end. DO not include ' '");
         }
         else if(clearanceBarcode.getText().equals("0") || clearanceBarcode.getText().equals("1"))
         {
             barcodeID = String.valueOf((int) (Math.random() * MAX_VALUE));
+            tempBarcodeID = barcodeID;
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
-            ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
+            //ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
             String createBarcodeID = barcodeID;
             String createEmployeeID = userBarcode.getText();
             int createClearance = Integer.parseInt(clearanceBarcode.getText());
@@ -936,6 +942,35 @@ public class HelloController implements Initializable{
         {
             barcodeWarningLabel.setText("Clearance must be either 0 or 1");
         }
+    }
+    public static void createBarcode(String barcodeID) throws IOException, OutputException, BarcodeException
+    {
+        ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File("barcode.png"));
+    }
+    public void addingToStack(ActionEvent event) throws IOException
+    {
+        timesAdded++;
+        if(timesAdded >= 30)
+        {
+            timesAdded = 0;
+        }
+        barcodeids[timesAdded] = tempBarcodeID;
+    }
+    public void fillingSheet(ActionEvent event) throws IOException
+    {
+        timesAdded++;
+        if(timesAdded >= 30)
+        {
+            timesAdded = 0;
+        }
+        for(int i = timesAdded; i < 30; i++)
+        {
+            barcodeids[i] = tempBarcodeID;
+        }
+    }
+    public void printingToPDF(ActionEvent event) throws IOException
+    {
+        Import2PDF(barcodeids);
     }
     public void scanSubmit(ActionEvent event) throws IOException, SQLException {
         String itemQuery = "SELECT item_ID FROM item_log_history";

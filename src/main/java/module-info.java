@@ -6,6 +6,9 @@ module com.example.demo {
     requires barbecue;
     requires java.desktop;
     requires java.sql;
+    requires kernel;
+    requires io;
+    requires layout;
 
 
     opens com.example.demo to javafx.fxml;
