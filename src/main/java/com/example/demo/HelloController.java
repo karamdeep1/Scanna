@@ -644,6 +644,9 @@ public class HelloController implements Initializable{
         locationBarcode.setText("");
         descriptionBarcode.setText("");
         barcodeImage.setImage(null);
+        addToStack.setVisible(false);
+        fillSheet.setVisible(false);
+        printStack.setVisible(false);
     }
     public void settingsButton(ActionEvent event) throws IOException {
         setAnchorPaneAway();
@@ -923,6 +926,8 @@ public class HelloController implements Initializable{
             tempBarcodeID = barcodeID;
             barcodeImage.setImage(convertToFxImage(generateCode128BarcodeImage(barcodeID)));
             barcodeWarningLabel.setText("Barcode Generated");
+            addToStack.setVisible(true);
+            fillSheet.setVisible(true);
             //ImageIO.write(generateCode128BarcodeImage(barcodeID), "png", new File(pngBarcode.getText()));
             String createBarcodeID = barcodeID;
             String createEmployeeID = userBarcode.getText();
@@ -975,6 +980,7 @@ public class HelloController implements Initializable{
             timesAdded = 0;
         }
         barcodeids[timesAdded] = tempBarcodeID;
+        printStack.setVisible(true);
     }
     public void fillingSheet(ActionEvent event) throws IOException
     {
@@ -987,6 +993,7 @@ public class HelloController implements Initializable{
         {
             barcodeids[i] = tempBarcodeID;
         }
+        printStack.setVisible(true);
     }
     public void printingToPDF(ActionEvent event) throws IOException
     {
