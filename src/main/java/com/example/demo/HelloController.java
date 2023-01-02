@@ -43,6 +43,8 @@ import net.sourceforge.barbecue.output.OutputException;
 
 import javax.imageio.ImageIO;
 
+import static com.example.demo.CSV.CSVExport;
+import static com.example.demo.CSV.CSVimport;
 import static com.example.demo.ImportPDF.Import2PDF;
 import static java.lang.Integer.MAX_VALUE;
 
@@ -147,6 +149,10 @@ public class HelloController implements Initializable{
     private Button fillSheet;
     @FXML
     private Button printStack;
+    @FXML
+    private Button csvExport;
+    @FXML
+    private Button csvImport;
     @FXML
     private Hyperlink forgotPass;
     @FXML
@@ -847,7 +853,14 @@ public class HelloController implements Initializable{
             e.printStackTrace();
         }
     }
-
+    public void importingCSV(ActionEvent event) throws IOException
+    {
+        CSVimport();
+    }
+    public void exportingCSV(ActionEvent event) throws IOException
+    {
+        CSVExport();
+    }
     //Generating barcodes using barbecue
     public static BufferedImage generateCode128BarcodeImage(String barcodeText) throws IOException, BarcodeException, OutputException {
         Code128Barcode barcode = (Code128Barcode) BarcodeFactory.createCode128(barcodeText);

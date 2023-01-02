@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
       <BorderPane prefHeight="533.0" prefWidth="910.0">
          <top>
@@ -50,6 +50,16 @@
                               <TableColumn fx:id="descriptionTableColumn" prefWidth="100.0" text="Description" />
                           </columns>
                         </TableView>
+                        <Button fx:id="csvImport" layoutX="136.0" layoutY="84.0" mnemonicParsing="false" onAction="#importingCSV" prefHeight="25.0" prefWidth="149.0" text="Import" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="csvExport" layoutX="396.0" layoutY="84.0" mnemonicParsing="false" onAction="#exportingCSV" prefHeight="25.0" prefWidth="149.0" text="Export" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPane3" layoutX="3.0" layoutY="912.0" prefHeight="456.0" prefWidth="735.0">
