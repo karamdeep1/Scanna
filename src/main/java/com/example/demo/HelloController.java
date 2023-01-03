@@ -599,6 +599,8 @@ public class HelloController implements Initializable{
     {
         searchBar.setVisible(false);
         barcodeTableView.setVisible(false);
+        csvImport.setVisible(false);
+        csvExport.setVisible(false);
     }
     public void setAnchorPane2Away()
     {
@@ -623,6 +625,8 @@ public class HelloController implements Initializable{
         setAnchorPane4Away();
         searchBar.setVisible(true);
         barcodeTableView.setVisible(true);
+        csvImport.setVisible(true);
+        csvExport.setVisible(true);
     }
     public void scanButton(ActionEvent event) throws IOException {
         setAnchorPaneAway();
@@ -856,6 +860,29 @@ public class HelloController implements Initializable{
     public void importingCSV(ActionEvent event) throws IOException
     {
         CSVimport();
+        barcodeSearchModelObservableList.clear();
+        String barcodeImportViewQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
+        try {
+            Statement s = connectDB.createStatement();
+            ResultSet queryImportOutput = s.executeQuery(barcodeImportViewQuery);
+            while (queryImportOutput.next()) {
+                String queryItemID = queryImportOutput.getString("item_ID");
+                String queryEmployeeID = queryImportOutput.getString("employee_ID");
+                Integer queryClearance = queryImportOutput.getInt("clearance");
+                String queryType = queryImportOutput.getString("type");
+                String queryLocation = queryImportOutput.getString("Location");
+                String queryDescription = queryImportOutput.getString("description");
+
+                //Populate ObservableList
+                barcodeSearchModelObservableList.add(new BarcodeSearchModel(queryItemID, queryEmployeeID, queryClearance, queryType, queryLocation, queryDescription));
+            }
+            barcodeTableView.setItems(barcodeSearchModelObservableList);
+            searchList();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     public void exportingCSV(ActionEvent event) throws IOException
     {

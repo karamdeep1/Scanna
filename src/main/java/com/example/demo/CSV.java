@@ -30,53 +30,56 @@ public class CSV {
             connection = DriverManager.getConnection(jdbcURL, username, password);
             connection.setAutoCommit(false);
 
-            String sql = "INSERT INTO item_log_history (itemID, employeeID, clearance, type, location, description) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO item_log_history (item_ID, employee_ID, clearance, type, Location, description) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            BufferedReader lineReader = new BufferedReader(new FileReader(chooser.showOpenDialog(null)));
-            String lineText = null;
+            File fr = chooser.showOpenDialog(null);
+            if(fr != null) {
+                BufferedReader lineReader = new BufferedReader(new FileReader(fr));
 
-            int count = 0;
+                String lineText = null;
 
-            lineReader.readLine(); // skip header line
+                int count = 0;
 
-            while ((lineText = lineReader.readLine()) != null) {
-                String[] data = lineText.split(",");
-                String itemID = data[0];
-                String employeeID = data[1];
-                String clearance = data[2];
-                String type = data[3];
-                String location = data[4];
-                String description = data[5];
-                // optional example - String comment = data.length == 5 ? data[4] : "";
+                lineReader.readLine(); // skip header line
 
-                statement.setString(1, itemID);
-                statement.setString(2, employeeID);
+                while ((lineText = lineReader.readLine()) != null) {
+                    String[] data = lineText.split(",");
+                    String itemID = data[0];
+                    String employeeID = data[1];
+                    String clearance = data[2];
+                    String type = data[3];
+                    String location = data[4];
+                    String description = data[5];
+                    // optional example - String comment = data.length == 5 ? data[4] : "";
 
-                Integer clear = Integer.parseInt(clearance);
-                statement.setInt(3,clear);
-                //time example for database - Timestamp sqlTimestamp = Timestamp.valueOf(timestamp);
-                //statement.setTimestamp(3, sqlTimestamp);
+                    statement.setString(1, itemID);
+                    statement.setString(2, employeeID);
 
-                statement.setString(4, type);
-                statement.setString(5, location);
-                statement.setString(6, description);
+                    Integer clear = Integer.parseInt(clearance);
+                    statement.setInt(3, clear);
+                    //time example for database - Timestamp sqlTimestamp = Timestamp.valueOf(timestamp);
+                    //statement.setTimestamp(3, sqlTimestamp);
 
-                statement.addBatch();
+                    statement.setString(4, type);
+                    statement.setString(5, location);
+                    statement.setString(6, description);
 
-                if (count % batchSize == 0) {
-                    statement.executeBatch();
+                    statement.addBatch();
+
+                    if (count % batchSize == 0) {
+                        statement.executeBatch();
+                    }
                 }
+
+                lineReader.close();
+
+                // execute the remaining queries
+                statement.executeBatch();
+
+                connection.commit();
+                connection.close();
             }
-
-            lineReader.close();
-
-            // execute the remaining queries
-            statement.executeBatch();
-
-            connection.commit();
-            connection.close();
-
         } catch (IOException ex) {
             System.err.println(ex);
         } catch (SQLException ex) {
@@ -88,6 +91,7 @@ public class CSV {
                 e.printStackTrace();
             }
         }
+
     }
     public static void CSVExport(){
         String databaseName = "scannadb";

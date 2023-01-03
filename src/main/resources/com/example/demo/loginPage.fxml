@@ -173,7 +173,7 @@
                            </font>
                         </Button>
                         <Hyperlink fx:id="forgotPass" layoutX="307.0" layoutY="311.0" onAction="#switchToForgotPassword" text="Forgot Password" />
-                        <Hyperlink fx:id="registerAcc" layoutX="326.0" layoutY="446.0" onAction="#switchToRegisterAccountFirstPage" prefHeight="24.0" prefWidth="98.0" text="Register Account" />
+                        <Hyperlink fx:id="registerAcc" layoutX="313.0" layoutY="444.0" onAction="#switchToRegisterAccountFirstPage" prefHeight="24.0" prefWidth="98.0" text="Register Account" />
                      </children>
                   </AnchorPane>
                </children>
