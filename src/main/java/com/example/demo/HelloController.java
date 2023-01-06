@@ -254,6 +254,12 @@ public class HelloController implements Initializable{
     @FXML
     private Label scanWarningLabel;
     @FXML
+    private Button scanAddToStack;
+    @FXML
+    private Button scanFillSheet;
+    @FXML
+    private Button scanPrintStack;
+    @FXML
     private Button scanChangeBarcodeID;
     @FXML
     private Label settingsUsername;
@@ -437,7 +443,7 @@ public class HelloController implements Initializable{
             {
                 FPUserLabel.setVisible(false);
                 tf = false;
-                usernames.clear();
+                //usernames.clear();
                 break;
             }
         }
@@ -474,7 +480,7 @@ public class HelloController implements Initializable{
             FPSQLabel.setText(SQ.get(index));
             emp_id.clear();
             SQ.clear();
-            SQA.clear();
+            //SQA.clear();
         }
     }
     public void FPSASubmitButton(ActionEvent event) throws IOException {
@@ -576,6 +582,9 @@ public class HelloController implements Initializable{
         scanDelete.setVisible(false);
         scanCheckBox.setVisible(false);
         scanChangeBarcodeID.setVisible(false);
+        scanAddToStack.setVisible(false);
+        scanFillSheet.setVisible(false);
+        scanPrintStack.setVisible(false);
     }
     public void showScanComponents()
     {
@@ -593,6 +602,9 @@ public class HelloController implements Initializable{
         scanDelete.setVisible(true);
         scanCheckBox.setVisible(true);
         scanChangeBarcodeID.setVisible(true);
+        scanAddToStack.setVisible(true);
+        scanFillSheet.setVisible(true);
+        scanPrintStack.setVisible(true);
     }
     //Putting away anchor panes for later use
     public void setAnchorPaneAway()
@@ -857,8 +869,7 @@ public class HelloController implements Initializable{
             e.printStackTrace();
         }
     }
-    public void importingCSV(ActionEvent event) throws IOException
-    {
+    public void importingCSV(ActionEvent event) throws IOException {
         CSVimport();
         barcodeSearchModelObservableList.clear();
         String barcodeImportViewQuery = "SELECT item_ID, employee_ID, clearance, type, Location, description FROM item_log_history;";
@@ -1059,6 +1070,7 @@ public class HelloController implements Initializable{
         else
         {
             scanBarcodeID = scanBarcodeIDText.getText();
+            tempBarcodeID = scanBarcodeID;
             showScanComponents();
             scanItemID.clear();
         }

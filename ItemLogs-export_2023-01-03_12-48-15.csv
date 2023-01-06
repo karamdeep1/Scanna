@@ -1,0 +1,10 @@
+Barcode ID, Employee ID, Clearance, Type, Location, Description
+1757423091,emp303,0,nicks desktop,nick house,expensive desktop
+1873680714,emp202,0,desktop,thomas house,thomas desktop
+2070069234,emp101,1,pencil,school,number 2 pencil
+51806895,emp101,0,ryans laptop,ryans house,nice laptop
+532830771,emp303,0,desktop,anthonys house,anthonys desktop
+954775295,emp202,1,desktop,home,big desktop
+item101,emp101,0,pokemon,warehouse 1,bulbazor
+item202,emp202,0,laptop,warehouse 2,this is a laptop
+item303,emp303,0,lap,warehouse 3,lap

@@ -7,11 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import javafx.stage.*;
 public class CSV {
-    public static void CSVimport() {
+    public static void CSVimport(){
         String databaseName = "scannadb";
         String jdbcURL = "jdbc:mysql://localhost/" + databaseName;
         String username = "root";
         String password = "Scanna123.";
+
 
         FileChooser chooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -24,6 +25,8 @@ public class CSV {
         int batchSize = 20;
 
         Connection connection = null;
+
+
 
         try {
 
@@ -47,6 +50,19 @@ public class CSV {
                     String[] data = lineText.split(",");
                     String itemID = data[0];
                     String employeeID = data[1];
+
+                    String sql2 = "SELECT COUNT(employee_id) from employee where employee_ID = '" + employeeID + "'";
+                    Statement statement2 = connection.createStatement();
+                    ResultSet resultEmpID = statement2.executeQuery(sql2);
+                    resultEmpID.next();
+                    if(resultEmpID.getInt(1)>0){
+                        lineReader.readLine();
+                        data = lineText.split(",");
+                        itemID = data[0];
+                        employeeID = data[1];
+
+                    }
+
                     String clearance = data[2];
                     String type = data[3];
                     String location = data[4];

@@ -12,6 +12,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 
 import java.awt.*;
+import java.io.File;
 
 
 public class ImportPDF extends HelloController{
@@ -57,6 +58,12 @@ public class ImportPDF extends HelloController{
 
             System.out.println(
                     "Image  position set successfully in pdf");
+
+            if(Desktop.isDesktopSupported())
+            {
+                File myFile = new File(path);
+                Desktop.getDesktop().open(myFile);
+            }
         }
         catch (Exception e) {
             System.out.println("unable to set image position due to " + e);

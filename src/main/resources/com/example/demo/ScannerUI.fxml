@@ -50,12 +50,12 @@
                               <TableColumn fx:id="descriptionTableColumn" prefWidth="100.0" text="Description" />
                           </columns>
                         </TableView>
-                        <Button fx:id="csvImport" layoutX="67.0" layoutY="84.0" mnemonicParsing="false" onAction="#importingCSV" prefHeight="30.0" prefWidth="81.0" text="Import" textFill="#00b2f0">
+                        <Button fx:id="csvImport" layoutX="67.0" layoutY="84.0" mnemonicParsing="false" onAction="#importingCSV" prefHeight="30.0" prefWidth="81.0" stylesheets="@../../../../../css/style.css" text="Import" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="csvExport" layoutX="582.0" layoutY="84.0" mnemonicParsing="false" onAction="#exportingCSV" prefHeight="30.0" prefWidth="86.0" text="Export" textFill="#00b2f0">
+                        <Button fx:id="csvExport" layoutX="582.0" layoutY="84.0" mnemonicParsing="false" onAction="#exportingCSV" prefHeight="30.0" prefWidth="86.0" stylesheets="@../../../../../css/style.css" text="Export" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -104,15 +104,15 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addToStack" layoutX="124.0" layoutY="380.0" mnemonicParsing="false" onAction="#addingToStack" prefHeight="47.0" prefWidth="149.0" text="Add To Stack" textFill="#00b2f0">
+                        <Button fx:id="addToStack" layoutX="124.0" layoutY="380.0" mnemonicParsing="false" onAction="#addingToStack" prefHeight="47.0" prefWidth="149.0" stylesheets="@../../../../../css/style.css" text="Add To Stack" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></Button>
-                        <Button fx:id="fillSheet" layoutX="342.0" layoutY="380.0" mnemonicParsing="false" onAction="#fillingSheet" prefHeight="47.0" prefWidth="126.0" text="Fill Sheet" textFill="#00b2f0">
+                        <Button fx:id="fillSheet" layoutX="342.0" layoutY="380.0" mnemonicParsing="false" onAction="#fillingSheet" prefHeight="47.0" prefWidth="126.0" stylesheets="@../../../../../css/style.css" text="Fill Sheet" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></Button>
-                        <Button fx:id="printStack" layoutX="532.0" layoutY="380.0" mnemonicParsing="false" onAction="#printingToPDF" prefHeight="47.0" prefWidth="126.0" text="Print Stack" textFill="#00b2f0">
+                        <Button fx:id="printStack" layoutX="532.0" layoutY="380.0" mnemonicParsing="false" onAction="#printingToPDF" prefHeight="47.0" prefWidth="126.0" stylesheets="@../../../../../css/style.css" text="Print Stack" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></Button>
@@ -194,7 +194,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="scanBarcodeIDText" layoutX="236.0" layoutY="30.0" prefHeight="40.0" prefWidth="308.0" promptText="Enter Barcode ID that is on the barcode" />
-                        <Button fx:id="scanBarcodeIDSubmitButton" layoutX="566.0" layoutY="31.0" mnemonicParsing="false" onAction="#scanSubmit" prefHeight="38.0" prefWidth="124.0" text="Submit" textFill="#00b2f0">
+                        <Button fx:id="scanBarcodeIDSubmitButton" layoutX="566.0" layoutY="31.0" mnemonicParsing="false" onAction="#scanSubmit" prefHeight="38.0" prefWidth="124.0" stylesheets="@../../../../../css/style.css" text="Submit" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -229,12 +229,12 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="scanUpdate" layoutX="234.0" layoutY="387.0" mnemonicParsing="false" onAction="#update" prefHeight="49.0" prefWidth="137.0" text="UPDATE" textFill="#00b2f0">
+                        <Button fx:id="scanUpdate" layoutX="234.0" layoutY="387.0" mnemonicParsing="false" onAction="#update" prefHeight="49.0" prefWidth="137.0" stylesheets="@../../../../../css/style.css" text="UPDATE" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="23.0" />
                            </font>
                         </Button>
-                        <Button fx:id="scanDelete" layoutX="407.0" layoutY="387.0" mnemonicParsing="false" onAction="#delete" prefHeight="49.0" prefWidth="137.0" text="DELETE" textFill="#00b2f0">
+                        <Button fx:id="scanDelete" layoutX="407.0" layoutY="387.0" mnemonicParsing="false" onAction="#delete" prefHeight="49.0" prefWidth="137.0" stylesheets="@../../../../../css/style.css" text="DELETE" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
@@ -245,11 +245,23 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Button fx:id="scanChangeBarcodeID" layoutX="565.0" layoutY="91.0" mnemonicParsing="false" onAction="#changeBarcodeID" prefHeight="36.0" prefWidth="126.0" text="Change barcode ID" textFill="#00b2f0">
+                        <Button fx:id="scanChangeBarcodeID" layoutX="565.0" layoutY="91.0" mnemonicParsing="false" onAction="#changeBarcodeID" prefHeight="36.0" prefWidth="126.0" stylesheets="@../../../../../css/style.css" text="Change barcode ID" textFill="#00b2f0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
+                        <Button fx:id="scanAddToStack" layoutX="565.0" layoutY="151.0" mnemonicParsing="false" onAction="#addingToStack" prefHeight="38.0" prefWidth="130.0" stylesheets="@../../../../../css/style.css" text="Add To Stack" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="scanFillSheet" layoutX="565.0" layoutY="209.0" mnemonicParsing="false" onAction="#fillingSheet" prefHeight="38.0" prefWidth="130.0" stylesheets="@../../../../../css/style.css" text="Fill Sheet" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="scanPrintStack" layoutX="565.0" layoutY="270.0" mnemonicParsing="false" onAction="#printingToPDF" prefHeight="38.0" prefWidth="130.0" stylesheets="@../../../../../css/style.css" text="Print Stack" textFill="#00b2f0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                </children>
@@ -258,7 +270,7 @@
          <left>
             <AnchorPane fx:id="sideBar" prefHeight="455.0" prefWidth="173.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Log Out">
+                  <Button fx:id="LogOutButton" alignment="CENTER" graphicTextGap="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#switchToLogIn" prefHeight="65.0" prefWidth="175.0" stylesheets="@../../../../../css/UIStyle.css" text="Log Out">
                      <font>
                         <Font name="Dubai Regular" size="17.0" />
                      </font>
@@ -275,7 +287,7 @@
                   </Button>
                   <VBox prefHeight="306.0" prefWidth="174.0" style="-fx-background-color: white;">
                      <children>
-                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Search">
+                        <Button fx:id="Searchbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/UIStyle.css" text="Search">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -290,7 +302,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Scan">
+                        <Button fx:id="Scanbtn" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#scanButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/UIStyle.css" text="Scan">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -305,7 +317,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Create">
+                        <Button fx:id="Createbtn" alignment="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#createButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/UIStyle.css" text="Create">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
@@ -320,7 +332,7 @@
                               <Insets left="-30.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" style="-fx-background-color: white;" stylesheets="@../../../../../css/style.css" text="Settings">
+                        <Button fx:id="Settingsbtn" alignment="CENTER" graphicTextGap="2.0" mnemonicParsing="false" onAction="#settingsButton" prefHeight="65.0" prefWidth="174.0" stylesheets="@../../../../../css/UIStyle.css" text="Settings">
                            <font>
                               <Font name="Dubai Regular" size="17.0" />
                            </font>
