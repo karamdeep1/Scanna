@@ -91,6 +91,8 @@ public class HelloController implements Initializable{
     @FXML
     private TextField searchBar;
     @FXML
+    public static Label csvWarningLabel;
+    @FXML
     private Label notAdminLabel;
     @FXML
     private ListView<String> listView;
@@ -302,6 +304,7 @@ public class HelloController implements Initializable{
     static int timesAdded = 0;
     static String scanBarcodeID = "";
     static String settingsUser = "";
+    static String fpUser = "";
     static Integer settingsClearanceNumber;
     static String tempBarcodeID = null;
     DatabaseConnection connectNow = new DatabaseConnection();
@@ -464,12 +467,12 @@ public class HelloController implements Initializable{
                 String sqa = rs1.getString("SQ_Answer");
                 SQA.add(sqa);
             }
-
             for(int i = 0; i < emp_id.size(); i++) {
                 if(emp_id.get(i).equals(FPUserTextField.getText()))
                 {
                     index = i;
                     FPUserLabel.setVisible(false);
+                    fpUser = emp_id.get(i);
                     break;
                 }
                 else
@@ -508,7 +511,7 @@ public class HelloController implements Initializable{
         }
         else {
             FPPasswordIncorrectLabel.setVisible(false);
-            String FPFSQuery = "UPDATE employee SET Password = " +  "'" + FPConfirmPassword.getText() + "'" + " where Employee_ID = " +  "'" + usernames.get(index) + "'";
+            String FPFSQuery = "UPDATE employee SET Password = " +  "'" + FPConfirmPassword.getText() + "'" + " where Employee_ID = " +  "'" + fpUser + "'";
             pst = connectDB.prepareStatement(FPFSQuery);
             pst.execute(FPFSQuery);
             FPUserTextField.setText("");
@@ -613,6 +616,7 @@ public class HelloController implements Initializable{
         barcodeTableView.setVisible(false);
         csvImport.setVisible(false);
         csvExport.setVisible(false);
+        //csvWarningLabel.setVisible(false);
     }
     public void setAnchorPane2Away()
     {
@@ -740,7 +744,6 @@ public class HelloController implements Initializable{
         if(barcodeTableView != null)
         {
             sortedData.comparatorProperty().bind(barcodeTableView.comparatorProperty());
-
             barcodeTableView.setItems(sortedData);
         }
     }
@@ -1193,6 +1196,13 @@ public class HelloController implements Initializable{
                     break;
                 }
             }
+        }
+    }
+    public static void setCSVWarningLabel()
+    {
+        if(csvWarningLabel != null) {
+            csvWarningLabel.setVisible(true);
+            csvWarningLabel.setText("Some items were skipped. Check to see if the Barcode ID exists.");
         }
     }
 }

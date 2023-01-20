@@ -6,6 +6,9 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import javafx.stage.*;
+
+import static com.example.demo.HelloController.setCSVWarningLabel;
+
 public class CSV {
     public static void CSVimport(){
         String databaseName = "scannadb";
@@ -55,13 +58,17 @@ public class CSV {
                     Statement statement2 = connection.createStatement();
                     ResultSet resultEmpID = statement2.executeQuery(sql2);
                     resultEmpID.next();
-                    if(resultEmpID.getInt(1)>0){
+                    if(!(resultEmpID.getInt(1)>0)){
                         lineReader.readLine();
                         data = lineText.split(",");
                         itemID = data[0];
                         employeeID = data[1];
-
                     }
+                    else
+                    {
+                        setCSVWarningLabel();
+                    }
+
 
                     String clearance = data[2];
                     String type = data[3];
@@ -82,10 +89,17 @@ public class CSV {
                     statement.setString(6, description);
 
                     statement.addBatch();
-
-                    if (count % batchSize == 0) {
-                        statement.executeBatch();
+                    try
+                    {
+                        if (count % batchSize == 0) {
+                            statement.executeBatch();
+                        }
                     }
+                    catch(SQLException e)
+                    {
+                        setCSVWarningLabel();
+                    }
+
                 }
 
                 lineReader.close();
