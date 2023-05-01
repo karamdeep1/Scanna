@@ -1,0 +1,30 @@
+CREATE TABLE employee (
+	Employee_ID VARCHAR(50) NOT NULL,
+	FirstName VARCHAR(45) NOT NULL,
+	LastName VARCHAR(45) NOT NULL,
+	Email VARCHAR(45) NULL,
+	Password VARCHAR(45) NOT NULL,
+	Clearance INT NOT NULL,
+	Date Of Birth DATETIME NOT NULL,
+	SSN INT NOT NULL,
+	PRIMARY KEY (Employee_ID)
+);
+
+CREATE TABLE item_log_history (
+	item_ID VARCHAR(50) NOT NULL,
+	Location VARCHAR(100) NOT NULL,
+	employee_ID VARCHAR(50) NOT NULL,
+	time_date DATETIME NULL,
+	type VARCHAR(20) NOT NULL,
+	clearance INT NOT NULL,
+	description VARCHAR(200) NOT NULL,
+	PRIMARY KEY (item_ID, employeeID)
+);
+
+CREATE TABLE security_questions (
+	SQ_ID VARCHAR(50) NOT NULL,
+	Emp_ID VARCHAR(45) NOT NULL,
+	SQ VARCHAR(300) NOT NULL,
+	SQ_Answer VARCHAR(50) NOT NULL,
+	PRIMARY KEY (SQ_ID, Emp_ID)
+);
