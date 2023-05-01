@@ -21,4 +21,5 @@ https://github.com/NickT144
 Ryan Crowl:
 https://github.com/hoaxze
 
+# License
 This project is licensed under the MIT License - see the 'LICENSE' file for details.
