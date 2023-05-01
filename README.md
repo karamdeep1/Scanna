@@ -15,6 +15,9 @@ The search tab will have all the barcodes that you create. The scan tab is where
 you wish. The settings tab will have the current account that is logged in's items. The admin account will have more displayed in the settings tab.
 
 # Credits
+Karamdeep Bassi: 
+https://github.com/karamdeep1
+
 Nick Tran:
 https://github.com/NickT144
 
